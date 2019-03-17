@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Subscriptions extends StatelessWidget {
+class Events extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: Center(child: new Text('Subscription informatin'))
+        body: Center(child: new Text('Event Information'))
     );
   }
 }
