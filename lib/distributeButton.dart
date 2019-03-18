@@ -9,8 +9,8 @@ class Button extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new RaisedButton(
-      color: Colors.yellowAccent,
-      child: new Text(text,style: new TextStyle(fontSize: 20.0,color: Colors.black),),
+      color: Colors.black54,
+      child: new Text(text,style: new TextStyle(fontSize: 20.0,color: Colors.white),),
       onPressed: () {
         Navigator.pushNamed(context, route);
       },

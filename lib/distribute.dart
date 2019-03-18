@@ -8,10 +8,11 @@ class Distribute extends StatelessWidget {
     return new Scaffold(
         body: Container(
           decoration: new BoxDecoration(
-            gradient: new LinearGradient(
+            gradient: new RadialGradient(
+              radius: 0.6,
               colors: [
-                Colors.deepOrange,
-                Colors.blue
+                Colors.blueAccent,
+                Colors.black,
               ],
             ),
           ),
