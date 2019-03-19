@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'distribute.dart';
-import 'reni_halit.dart';
-import 'albert_erjon.dart';
-import 'kristjan_renald.dart';
-import 'besjon_arber.dart';
+import 'subscriptions.dart';
+import 'events.dart';
+import 'clubs.dart';
+import 'authentication/login.dart';
+import 'authentication/register.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,15 +15,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/reni_halit': (context) => Subscriptions(),
-        '/albert_erjon': (context) => Events(),
-        '/kristjan_renald': (context) => Login(),
-        '/besjon_arber': (context) => Clubs(),
+        '/subscriptions': (context) => Subscriptions(), // Reni & Halit
+        '/events': (context) => Events(), // Albert & Erjon
+        '/login': (context) => LoginPage(), // Kristjan & Rinald
+        '/register': (context) => RegisterPage(), // Kristjan & Rinald
+        '/clubs': (context) => Clubs(), // Besjon & Arber
       },
       title: 'Epoka Clubs',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.red,
+      // ),
       home: Distribute(),
     );
   }
