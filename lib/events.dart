@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'event_info_page.dart';
 
 class Events extends StatelessWidget {
   @override

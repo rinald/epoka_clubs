@@ -17,16 +17,14 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passwordController = TextEditingController();
 
   void _signUp() async {
-    final user = await _firebaseAuth.createUserWithEmailAndPassword(
+    _firebaseAuth.createUserWithEmailAndPassword(
       email: _emailController.text,
       password: _passwordController.text,
-    );
-
-    if (user != null) {
-      print('Sign up successful.');
-    } else {
-      print('Sign up failed.');
-    }
+    ).then((user) {
+      print('Sign up sucessful.');
+    }).catchError((error) {
+      print('Error : $error');
+    });
   }
 
   @override

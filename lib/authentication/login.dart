@@ -1,6 +1,7 @@
 // import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../home.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 
 // final _googleSignIn = GoogleSignIn();
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  FirebaseUser _user;
+  // FirebaseUser _user;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -21,12 +22,12 @@ class _LoginPageState extends State<LoginPage> {
       email: _emailController.text,
       password: _passwordController.text,
     ).then((user) {
-      setState(() {
-        _user = user;
-      });
-      print('Sign in sucessful');
+      print('Sign in sucessful.');
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => HomePage(user),
+      ));
     }).catchError((error) {
-      print('Sign in failed : $error');
+      print('Sign in failed : $error.');
     });
   }
 
