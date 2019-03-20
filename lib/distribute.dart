@@ -24,7 +24,6 @@ class Distribute extends StatelessWidget {
                  Button(text: 'Clubs', route: '/clubs'),
                  Button(text: 'Events', route: '/events'),
                  Button(text: 'Login', route: '/login'),
-                 Button(text: 'Register', route: '/register'),
               ],
             ),
           ),
