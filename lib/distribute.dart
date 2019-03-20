@@ -5,10 +5,10 @@ class Distribute extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return  Scaffold(
         body: Container(
-          decoration: new BoxDecoration(
-            gradient: new RadialGradient(
+          decoration:  BoxDecoration(
+            gradient:  RadialGradient(
               radius: 0.6,
               colors: [
                 Colors.blueAccent,
@@ -17,13 +17,13 @@ class Distribute extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: new Column(
+            child:  Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new Button(text: 'Subscriptions', route: '/reni_halit'),
-                new Button(text: 'Clubs', route: '/besjon_arber'),
-                new Button(text: 'Events', route: '/albert_erjon'),
-                new Button(text: 'Login', route: '/kristjan_renald'),
+                 Button(text: 'Subscriptions', route: '/subscriptions'),
+                 Button(text: 'Clubs', route: '/clubs'),
+                 Button(text: 'Events', route: '/events'),
+                 Button(text: 'Login', route: '/login'),
               ],
             ),
           ),

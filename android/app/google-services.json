@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "309550021482",
+    "firebase_url": "https://epoka-clubs.firebaseio.com",
+    "project_id": "epoka-clubs",
+    "storage_bucket": "epoka-clubs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309550021482:android:a8d34154b262c96b",
+        "android_client_info": {
+          "package_name": "al.edu.epoka.clubs.epokaclubs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309550021482-evfid7uk2cnj78ljb3cd8p4hql7p55ju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "al.edu.epoka.clubs.epokaclubs",
+            "certificate_hash": "15e40473d5aba4e60183556a956bc031eff9e707"
+          }
+        },
+        {
+          "client_id": "309550021482-7k13im37ikjrqm6rvf6ld1hrnvmko7hu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAct4n0Hppxjy7pi0yWNJpeHniMVQ85tJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309550021482-7k13im37ikjrqm6rvf6ld1hrnvmko7hu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
