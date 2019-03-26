@@ -18,41 +18,54 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Home'),
+        actions: <Widget>[
+          
+        ],
+      ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Text(
-                'Home',
-                style: TextStyle(
-                  fontSize: 50,
-                ),
-              ),
+              Spacer(),
               GoogleUserCircleAvatar(identity: _account),
+              Spacer(),
               Text(
                 '${_account.displayName}',
                 style: TextStyle(
                   fontSize: 25,
                 ),
               ),
+              Spacer(),
               Text(
                 '${_account.email}',
                 style: TextStyle(
                   fontSize: 25,
                 ),
               ),
+              Spacer(flex: 5),
               RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  // side: BorderSide(
+                  //   color: Colors.black,
+                  //   width: 2.0,
+                  // ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Icon(Icons.exit_to_app),
+                    Icon(Icons.person_outline),
                     Text('Sign out'),
                   ],
                 ),
                 onPressed: _signOut,
-                color: Colors.blue,
               ),
             ],
           ),

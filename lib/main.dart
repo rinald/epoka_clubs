@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'distribute.dart';
 import 'subscriptions.dart';
 import 'events.dart';
 import 'clubs.dart';
 import 'login.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.white
+  ));
+  runApp(EpokaClubs());
+}
 
-class MyApp extends StatelessWidget {
+class EpokaClubs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,9 +26,9 @@ class MyApp extends StatelessWidget {
         '/clubs': (context) => Clubs(), // Besjon & Arber
       },
       title: 'Epoka Clubs',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.red,
-      // ),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
       home: Distribute(),
     );
   }

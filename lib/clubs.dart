@@ -4,7 +4,12 @@ class Clubs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-        body: Center(child:  Text('Clubs information'))
+      appBar: AppBar(
+        title: Text('Clubs'),
+      ),
+      body: Center(
+        child:  Text('Clubs information')
+      ),
     );
   }
 }

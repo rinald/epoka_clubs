@@ -8,12 +8,24 @@ class Button extends StatelessWidget{
   final String route;
   @override
   Widget build(BuildContext context) {
-    return  RaisedButton(
-      color: Colors.black54,
-      child:  Text(text,style:  TextStyle(fontSize: 20.0,color: Colors.white),),
-      onPressed: () {
+    return GestureDetector(
+      onTapUp: (details) {
         Navigator.pushNamed(context, route);
       },
+
+      child: ListTile (
+        
+        // color: Colors.black54,
+        title: Text(
+          text,
+          style: TextStyle(
+            fontSize: 20.0,
+          ),
+        ),
+        // onPressed: () {
+        //   Navigator.pushNamed(context, route);
+        // },
+      ),
     );
   }
 }

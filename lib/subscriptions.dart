@@ -4,7 +4,10 @@ class Subscriptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-        body: Center(child:  Text('Subscription information'))
+      appBar: AppBar(
+        title: Text('Subscriptions'),
+      ),
+      body: Center(child:  Text('Subscription information'))
     );
   }
 }

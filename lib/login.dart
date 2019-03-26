@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
       print(account.photoUrl);
       print(account.id);
 
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.push(context, MaterialPageRoute(
         builder: (context) => HomePage(account),
       ));
     }).catchError((error) {
@@ -33,28 +33,36 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 50,
-                ),
-              ),
+              Spacer(flex: 1),
+              Image.asset('res/img/epoka_logo.png'),
+              Spacer(flex: 1),
               RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  // side: BorderSide(
+                  //   color: Colors.black,
+                  //   width: 2.0,
+                  // ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Icon(Icons.person_outline),
-                    Text('Sign in with Google'),
+                    Text('Sign in with Epoka Mail'),
                   ],
                 ),
                 onPressed: _signInGoogle,
-                color: Colors.blue,
               ),
             ],
           ),
