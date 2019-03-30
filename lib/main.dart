@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         '/subscriptions': (context) => Subscriptions(), // Reni & Halit
         '/events': (context) => Events(), // Albert & Erjon
         '/login': (context) => LoginPage(), // Kristjan & Rinald
-        '/clubs': (context) => Clubs(), // Besjon & Arber
+        '/clubs': (context) => MyHomePage(), // Besjon & Arber
       },
       title: 'Epoka Clubs',
       // theme: ThemeData(
