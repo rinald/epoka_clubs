@@ -9,10 +9,10 @@ class Distribute extends StatelessWidget {
         body: Container(
           decoration:  BoxDecoration(
             gradient:  RadialGradient(
-              radius: 0.6,
+              radius: 0.8,
               colors: [
+                Colors.white,
                 Colors.blueAccent,
-                Colors.black,
               ],
             ),
           ),
