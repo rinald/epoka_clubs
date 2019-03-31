@@ -19,7 +19,7 @@ class Button extends StatelessWidget{
         title: Text(
           text,
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: 15.0,
           ),
         ),
         // onPressed: () {

@@ -7,7 +7,21 @@ class Subscriptions extends StatelessWidget {
       appBar: AppBar(
         title: Text('Subscriptions'),
       ),
-      body: Center(child:  Text('Subscription information'))
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.error, 
+                size: 100,
+                color: Colors.grey,
+              ),
+              Text('Nothing to see'),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
