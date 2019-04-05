@@ -1,11 +1,5 @@
-// import 'dart:async';
-import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'util.dart';
 import 'home.dart';
-
-// final _auth = FirebaseAuth.instance;
-final _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,28 +7,41 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _googleSignIn = GoogleSignIn();
+
+  void _showInvalidAccountAlert () => showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text('Access Denied'),
+      content: Text('You can only sign in with a valid Epoka Mail account.'),
+      actions: <Widget>[
+        FlatButton(
+          child: Text('Dismiss'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        )
+      ],
+    )
+  );
+
   void _signIn() async {
     try {
       GoogleSignInAccount googleAccount = await _googleSignIn.signIn();
 
-      Navigator.push(context, MaterialPageRoute(
-        builder: (_) => HomePage(googleAccount, _googleSignIn)
-      ));
-
+      if (validEmail(googleAccount.email)) {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (_) => HomePage(googleAccount, _googleSignIn)
+        ));
+      } else {
+        _googleSignIn.signOut().then((_) {
+          _showInvalidAccountAlert();
+        });
+      }
+        
     } catch (error) {
       print(error);
     }
-    
-    // GoogleSignInAuthentication googleAuth = await googleAccount.authentication;
-
-    // AuthCredential credential = GoogleAuthProvider.getCredential(
-    //   idToken: googleAuth.idToken,
-    //   accessToken: googleAuth.accessToken
-    // );
-
-    // FirebaseUser user = await _auth.signInWithCredential(credential);
-
-    // return user;
   }
 
   @override

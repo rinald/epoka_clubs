@@ -1,6 +1,5 @@
+import 'util.dart';
 import 'package:epokaclubs/subscriptionSample.dart';
-import 'package:flutter/material.dart';
-
 
 class Subscriptions extends StatelessWidget {
   @override
@@ -15,16 +14,14 @@ class Subscriptions extends StatelessWidget {
 }
 
 class ListDisplay extends StatelessWidget {
+  final subs = <SubscriptionSample>[
+    SubscriptionSample('Albert', 1),
+    SubscriptionSample('Besjon', 1),
+    SubscriptionSample('Rinald', 1),
+  ];
+  
   @override
-
-  static SubscriptionSample item1 = SubscriptionSample("Albert",1);
-  static SubscriptionSample item2 = SubscriptionSample("Besjon", 2);
-  static SubscriptionSample item3 = SubscriptionSample("Rinald", 3);
-
-  List<SubscriptionSample> subs = [item1, item2,item3];
-
   Widget build (BuildContext ctxt) {
-
     return ListView.builder(
       itemCount: subs.length,
       itemBuilder:(context, index){

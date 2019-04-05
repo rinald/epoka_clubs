@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 final leftSection =  Container(
   child:  CircleAvatar(
     backgroundColor: Colors.lightGreen,
@@ -7,10 +8,11 @@ final leftSection =  Container(
     radius: 30.0,
   ),
 );
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
   @override
-  _MyHomePageState createState() =>  _MyHomePageState();
+  _HomePageState createState() =>  _HomePageState();
 }
 
 class Clubs extends StatelessWidget {
@@ -37,7 +39,8 @@ class Clubs extends StatelessWidget {
     );
   }
 }
-class _MyHomePageState extends State<MyHomePage> {
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -76,14 +79,9 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 1.5,
             ),
           ),
-
+        ),
+       ),
       ),
-
-
-   //],
-
-       ),
-       ),
     );
   }
 }
