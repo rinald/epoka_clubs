@@ -19,6 +19,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  void _query() {
+    Firestore.instance.collection('Clubs')
+      .snapshots()
+      .listen((data) {
+        data.documents.forEach((doc) {
+          print(doc['admin']);
+        });
+      });
+  }
+
   void _signInGoogle() async {
      String _adminName = await getFirstClub();
     _googleSignIn.signIn().then((account) {
@@ -27,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       print(account.photoUrl);
       print(_adminName);
       print(account.id);
+      // _query();
 
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => HomePage(account),
@@ -37,20 +48,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<String> getFirstClub() async {
-//    DocumentSnapshot querySnapshot = await Firestore.instance
-//        .collection('Clubs')
-//        .document('1')
-//        .get();
-//    if (querySnapshot.exists &&
-//        querySnapshot.data.containsKey('admin')) {
-//      return querySnapshot.data['admin'];
-//  }
-//  else{
-//      return 'empty';
-//    }
-    Firestore.instance.collection('Clubs').document()
-        .setData({ 'title': 'title', 'author': 'author' });
-  return 'Hello Mr. Error';
+    DocumentSnapshot querySnapshot = await Firestore.instance
+      .collection('Clubs')
+      .document('1')
+      .get();
+    if (querySnapshot.exists && querySnapshot.data.containsKey('admin')) {
+      return querySnapshot.data['admin'];
+    } else {
+      return 'empty';
+    }
   }
 
   @override
