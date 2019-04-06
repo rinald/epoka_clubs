@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.grey,
               ),
               Text('Nothing to see'),
-              Text('${config.user.userType}'),
+              // Text('${config.user.userType}'),
             ],
           ),
         ),

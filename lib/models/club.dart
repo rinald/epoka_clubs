@@ -1,16 +1,8 @@
-
-
 class Club {
+  const Club({this.id, this.name, this.admin});
   final String id;
   final String admin;
   final String name;
-
-  const Club({
-    this.id,
-    this.name,
-    this.admin
-  });
-
 
   Club.fromMap(Map<String, dynamic> data, String id)
       : this(

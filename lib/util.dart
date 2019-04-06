@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 export 'package:flutter/material.dart';
 export 'package:google_sign_in/google_sign_in.dart';
+export 'package:cloud_firestore/cloud_firestore.dart';
 
 bool validEmail (String email) {
   if (email.contains('epoka.edu.al')) {
@@ -33,6 +34,12 @@ class RouteTile extends StatelessWidget{
       ),
     );
   }
+}
+
+class SubscriptionSample {
+  const SubscriptionSample(this.name, this.id);
+  final String name;
+  final int id;
 }
 
 enum EpokaUserType {

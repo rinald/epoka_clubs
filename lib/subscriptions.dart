@@ -1,5 +1,4 @@
 import 'util.dart';
-import 'package:epokaclubs/subscriptionSample.dart';
 
 class Subscriptions extends StatelessWidget {
   @override
@@ -14,21 +13,23 @@ class Subscriptions extends StatelessWidget {
 }
 
 class ListDisplay extends StatelessWidget {
-  final subs = <SubscriptionSample>[
+  final _subs = <SubscriptionSample>[
     SubscriptionSample('Albert', 1),
-    SubscriptionSample('Besjon', 1),
-    SubscriptionSample('Rinald', 1),
+    SubscriptionSample('Besjon', 2),
+    SubscriptionSample('Rinald', 3),
+    SubscriptionSample('Halit', 4),
+    SubscriptionSample('Kristjan', 5),
   ];
   
   @override
   Widget build (BuildContext ctxt) {
     return ListView.builder(
-      itemCount: subs.length,
+      itemCount: _subs.length,
       itemBuilder:(context, index){
         return ListTile(
-          leading: Text('${subs[index].id}'),
-          title: Text('${subs[index].name}'),
-          trailing: Icon(Icons.keyboard_arrow_right),
+          leading: Text('${_subs[index].id}'),
+          title: Text('${_subs[index].name}'),
+          trailing: Icon(Icons.message),
         );
       },
     );

@@ -23,6 +23,16 @@ class _LoginPageState extends State<LoginPage> {
         ],
       )
   );
+  
+  // void _query() {
+  //   Firestore.instance.collection('Clubs')
+  //     .snapshots()
+  //     .listen((data) {
+  //       data.documents.forEach((doc) {
+  //         print(doc['admin']);
+  //       });
+  //     });
+  // }
 
   void _signIn() {
     config.googleSignIn.signIn().then((_account) {
@@ -50,6 +60,18 @@ class _LoginPageState extends State<LoginPage> {
       }
     });
   }
+  
+  // Future<String> getFirstClub() async {
+  //   DocumentSnapshot querySnapshot = await Firestore.instance
+  //     .collection('Clubs')
+  //     .document('1')
+  //     .get();
+  //   if (querySnapshot.exists && querySnapshot.data.containsKey('admin')) {
+  //     return querySnapshot.data['admin'];
+  //   } else {
+  //     return 'empty';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

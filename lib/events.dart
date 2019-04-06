@@ -1,27 +1,28 @@
+import 'package:epokaclubs/models/event.dart';
 import 'package:flutter/material.dart';
-
+  
 class Events extends StatelessWidget {
+  final _events = <Event>[
+    Event('Flutter Workshop', 'Programming Club', 'Kristjan'),
+    Event('Next step for an engineer', 'Robotics Club', 'Not Kristjan'),
+    Event('Games Day 2019', 'Sports Club', 'Not Kristjan'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
        title: Text('Events')
       ),
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Icon(Icons.error, 
-                size: 100,
-                color: Colors.grey,
-              ),
-              Text('Nothing to see'),
-            ],
-          ),
-        ),
-      ),
+      body: ListView.builder(
+        itemCount: _events.length,
+        itemBuilder:(context, index) {
+          return ListTile(
+            title: Text('${_events[index].title}'),
+            subtitle: Text('${_events[index].club}'),
+          );
+        },
+      )
     );
   }
 }
