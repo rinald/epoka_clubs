@@ -9,19 +9,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   void _showInvalidAccountAlert () => showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text('Access Denied'),
-      content: Text('You can only sign in with a valid Epoka Mail account.'),
-      actions: <Widget>[
-        FlatButton(
-          child: Text('Dismiss'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        )
-      ],
-    )
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Access Denied'),
+        content: Text('You can only sign in with a valid Epoka Mail account.'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Dismiss'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      )
   );
 
   void _signIn() {
@@ -36,12 +36,12 @@ class _LoginPageState extends State<LoginPage> {
         }
 
         config.user = EpokaUser(
-          account: _account,
-          userType: _type
+            account: _account,
+            userType: _type
         );
 
         Navigator.push(context, MaterialPageRoute(
-          builder: (_) => HomePage()
+            builder: (_) => HomePage()
         ));
       } else {
         config.googleSignIn.signOut().then((_) {
@@ -65,8 +65,8 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               Spacer(flex: 1),
               Container(
-                height: 250,
-                child: Image.asset('res/img/epoka_icon.png')
+                  height: 250,
+                  child: Image.asset('res/img/epoka_icon.png')
               ),
               Spacer(flex: 1),
               RaisedButton(
