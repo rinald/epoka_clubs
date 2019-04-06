@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/subscriptions': (context) => Subscriptions(), // Reni & Halit
-        '/events': (context) => Events(), // Albert & Erjon
+        '/events': (context) => EventWidget(), // Albert & Erjon
         '/login': (context) => LoginPage(), // Kristjan & Rinald
         '/clubs': (context) => MyHomePage(), // Besjon & Arber
       },
