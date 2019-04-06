@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 import 'home.dart';
 
 final _googleSignIn = GoogleSignIn(
@@ -16,10 +20,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   void _signInGoogle() async {
+     String _adminName = await getFirstClub();
     _googleSignIn.signIn().then((account) {
       print(account.displayName);
       print(account.email);
       print(account.photoUrl);
+      print(_adminName);
       print(account.id);
 
       Navigator.of(context).push(MaterialPageRoute(
@@ -28,6 +34,23 @@ class _LoginPageState extends State<LoginPage> {
     }).catchError((error) {
       print('Error: $error');
     });
+  }
+
+  Future<String> getFirstClub() async {
+//    DocumentSnapshot querySnapshot = await Firestore.instance
+//        .collection('Clubs')
+//        .document('1')
+//        .get();
+//    if (querySnapshot.exists &&
+//        querySnapshot.data.containsKey('admin')) {
+//      return querySnapshot.data['admin'];
+//  }
+//  else{
+//      return 'empty';
+//    }
+    Firestore.instance.collection('Clubs').document()
+        .setData({ 'title': 'title', 'author': 'author' });
+  return 'Hello Mr. Error';
   }
 
   @override

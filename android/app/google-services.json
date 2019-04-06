@@ -15,8 +15,20 @@
       },
       "oauth_client": [
         {
-          "client_id": "551395885861-4cshr44ks7v54coo36b401goma4e0s9l.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "551395885861-icj84e3tvf2o32f9pld9v1j9u8q4hn0g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "al.edu.epoka.clubs.epokaclubs",
+            "certificate_hash": "546280d8a01c292a50bdfa9268b9e30b01594bf0"
+          }
+        },
+        {
+          "client_id": "551395885861-eqn8bvlne92e6c2o9qq7ebhga92kjsf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "al.edu.epoka.clubs.epokaclubs",
+            "certificate_hash": "15e40473d5aba4e60183556a956bc031eff9e707"
+          }
         }
       ],
       "api_key": [
@@ -25,15 +37,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551395885861-4cshr44ks7v54coo36b401goma4e0s9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
