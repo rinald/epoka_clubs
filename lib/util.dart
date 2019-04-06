@@ -41,7 +41,7 @@ enum EpokaUserType {
 }
 
 class EpokaUser {
-  EpokaUser({this.account, this.userType: EpokaUserType.Student});
+  EpokaUser({this.account, this.userType});
 
   final GoogleSignInAccount account;
   final EpokaUserType userType;

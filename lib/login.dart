@@ -1,5 +1,6 @@
 import 'util.dart';
 import 'home.dart';
+import 'config.dart' as config;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,8 +8,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _googleSignIn = GoogleSignIn();
-
   void _showInvalidAccountAlert () => showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -25,23 +24,31 @@ class _LoginPageState extends State<LoginPage> {
     )
   );
 
-  void _signIn() async {
-    try {
-      GoogleSignInAccount googleAccount = await _googleSignIn.signIn();
+  void _signIn() {
+    config.googleSignIn.signIn().then((_account) {
+      final String _email = _account.email;
 
-      if (validEmail(googleAccount.email)) {
+      if (validEmail(_email)) {
+        var _type = EpokaUserType.Student;
+
+        if (!_email.contains(RegExp(r'[0-9]+'))) {
+          _type = EpokaUserType.Staff;
+        }
+
+        config.user = EpokaUser(
+          account: _account,
+          userType: _type
+        );
+
         Navigator.push(context, MaterialPageRoute(
-          builder: (_) => HomePage(googleAccount, _googleSignIn)
+          builder: (_) => HomePage()
         ));
       } else {
-        _googleSignIn.signOut().then((_) {
+        config.googleSignIn.signOut().then((_) {
           _showInvalidAccountAlert();
         });
       }
-        
-    } catch (error) {
-      print(error);
-    }
+    });
   }
 
   @override

@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             radius: 70.0,
           ),
           padding: const EdgeInsets.fromLTRB(25.0, 22.0, 25.0, 20.0),
-           //alignment: Alignment.topCenter,
+          // alignment: Alignment.topCenter,
           width: 360.0,
           height: 150.0,
           decoration: BoxDecoration(

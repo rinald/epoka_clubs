@@ -1,17 +1,14 @@
 import 'util.dart';
+import 'config.dart' as config;
 
 class HomePage extends StatefulWidget {
-  HomePage(this._user, this._googleSignIn);
-  final GoogleSignInAccount _user;
-  final GoogleSignIn _googleSignIn;
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   void _signOut() {
-    widget._googleSignIn.signOut().then((_) {
+    config.googleSignIn.signOut().then((_) {
       Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
     });
   }
@@ -41,11 +38,11 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.only(left: 20, top: 10),
-                      child: GoogleUserCircleAvatar(identity: widget._user),
+                      child: GoogleUserCircleAvatar(identity: config.user.account),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20, top: 5),
-                      child: Text('${widget._user.displayName}', 
+                      child: Text('${config.user.account.displayName}', 
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -53,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20),
-                      child: Text('${widget._user.email}', 
+                      child: Text('${config.user.account.email}', 
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -105,6 +102,7 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.grey,
               ),
               Text('Nothing to see'),
+              Text('${config.user.userType}'),
             ],
           ),
         ),
