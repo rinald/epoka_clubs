@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
-import 'distribute.dart';
+import 'package:flutter/services.dart';
 import 'subscriptions.dart';
 import 'events.dart';
 import 'clubs.dart';
 import 'login.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.blue[900]
+  ));
+  runApp(EpokaClubs());
+}
 
-class MyApp extends StatelessWidget {
+class EpokaClubs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
+        '/': (context) => LoginPage(),
         '/subscriptions': (context) => Subscriptions(), // Reni & Halit
-        '/events': (context) => EventWidget(), // Albert & Erjon
-        '/login': (context) => LoginPage(), // Kristjan & Rinald
-        '/clubs': (context) => MyHomePage(), // Besjon & Arber
+        '/events': (context) => Events(), // Albert & Erjon
+        '/clubs': (context) => Clubs(), // Besjon & Arber
       },
       title: 'Epoka Clubs',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.red,
-      // ),
-      home: Distribute(),
+      theme: ThemeData(
+        primaryColor: Colors.blue[800],
+      ),
     );
   }
 }
