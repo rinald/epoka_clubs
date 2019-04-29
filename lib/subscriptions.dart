@@ -14,11 +14,11 @@ class Subscriptions extends StatelessWidget {
 
 class ListDisplay extends StatelessWidget {
   final _subs = <SubscriptionSample>[
-    SubscriptionSample('Albert', 1),
-    SubscriptionSample('Besjon', 2),
-    SubscriptionSample('Rinald', 3),
-    SubscriptionSample('Halit', 4),
-    SubscriptionSample('Kristjan', 5),
+    SubscriptionSample('Albert'),
+    SubscriptionSample('Besjon'),
+    SubscriptionSample('Rinald'),
+    SubscriptionSample('Halit'),
+    SubscriptionSample('Kristjan'),
   ];
   
   @override
@@ -27,9 +27,9 @@ class ListDisplay extends StatelessWidget {
       itemCount: _subs.length,
       itemBuilder:(context, index){
         return ListTile(
-          leading: Text('${_subs[index].id}'),
+          leading: Icon(Icons.arrow_right),
           title: Text('${_subs[index].name}'),
-          trailing: Icon(Icons.message),
+          trailing: Icon(Icons.remove_circle),
         );
       },
     );

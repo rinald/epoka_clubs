@@ -37,9 +37,8 @@ class RouteTile extends StatelessWidget{
 }
 
 class SubscriptionSample {
-  const SubscriptionSample(this.name, this.id);
+  const SubscriptionSample(this.name);
   final String name;
-  final int id;
 }
 
 enum EpokaUserType {
