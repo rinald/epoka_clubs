@@ -1,3 +1,4 @@
+import 'package:epokaclubs/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'subscriptions.dart';
@@ -19,7 +20,7 @@ class EpokaClubs extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
+        '/': (context) => MyHomePage(),
         '/subscriptions': (context) => Subscriptions(), // Reni & Halit
         '/events': (context) => Events(), // Albert & Erjon
         '/clubs': (context) => Clubs(), // Besjon & Arber
