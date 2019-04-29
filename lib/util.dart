@@ -52,4 +52,11 @@ class EpokaUser {
 
   final GoogleSignInAccount account;
   final EpokaUserType userType;
-} 
+}
+
+class MockUser {
+  MockUser({this.name, this.email, this.userType = EpokaUserType.Student});
+  final String name;
+  final String email;
+  final EpokaUserType userType;
+}

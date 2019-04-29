@@ -1,4 +1,4 @@
-import 'util.dart';
+import '../util.dart';
 
 class Subscriptions extends StatelessWidget {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'subscriptions.dart';
-import 'events.dart';
-import 'clubs.dart';
-import 'login.dart';
+import 'pages/subscriptions.dart';
+import 'pages/events.dart';
+import 'pages/clubs.dart';
+import 'pages/login.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

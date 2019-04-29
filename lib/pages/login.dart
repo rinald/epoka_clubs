@@ -1,6 +1,6 @@
-import 'util.dart';
+import '../util.dart';
 import 'home.dart';
-import 'config.dart' as config;
+import '../config.dart' as config;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -34,43 +34,45 @@ class _LoginPageState extends State<LoginPage> {
   //     });
   // }
 
-  void _signIn() {
-    config.googleSignIn.signIn().then((_account) {
-      final String _email = _account.email;
+  void _mockSignIn() {
+    final _email = 'rshabani18@epoka.edu.al';
+    final _name = 'Rinald Shabani';
 
-      if (validEmail(_email)) {
-        var _type = EpokaUserType.Student;
+    config.user = MockUser(
+      name: _name,
+      email: _email
+    );
 
-        if (!_email.contains(RegExp(r'[0-9]+'))) {
-          _type = EpokaUserType.Staff;
-        }
-
-        config.user = EpokaUser(
-            account: _account,
-            userType: _type
-        );
-
-        Navigator.push(context, MaterialPageRoute(
-            builder: (_) => HomePage()
-        ));
-      } else {
-        config.googleSignIn.signOut().then((_) {
-          _showInvalidAccountAlert();
-        });
-      }
-    });
+    Navigator.push(context, MaterialPageRoute(
+      builder: (_) => HomePage()
+    ));
   }
-  
-  // Future<String> getFirstClub() async {
-  //   DocumentSnapshot querySnapshot = await Firestore.instance
-  //     .collection('Clubs')
-  //     .document('1')
-  //     .get();
-  //   if (querySnapshot.exists && querySnapshot.data.containsKey('admin')) {
-  //     return querySnapshot.data['admin'];
-  //   } else {
-  //     return 'empty';
-  //   }
+
+  // void _signIn() {
+  //   config.googleSignIn.signIn().then((_account) {
+  //     final String _email = _account.email;
+
+  //     if (validEmail(_email)) {
+  //       var _type = EpokaUserType.Student;
+
+  //       if (!_email.contains(RegExp(r'[0-9]+'))) {
+  //         _type = EpokaUserType.Staff;
+  //       }
+
+  //       config.user = EpokaUser(
+  //           account: _account,
+  //           userType: _type
+  //       );
+
+  //       Navigator.push(context, MaterialPageRoute(
+  //           builder: (_) => HomePage()
+  //       ));
+  //     } else {
+  //       config.googleSignIn.signOut().then((_) {
+  //         _showInvalidAccountAlert();
+  //       });
+  //     }
+  //   });
   // }
 
   @override
@@ -88,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(flex: 1),
               Container(
                   height: 250,
-                  child: Image.asset('res/img/epoka_icon.png')
+                  child: Image.asset('assets/images/epoka_icon.png')
               ),
               Spacer(flex: 1),
               RaisedButton(
@@ -104,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text('Sign in with Epoka Mail'),
                   ],
                 ),
-                onPressed: _signIn,
+                onPressed: _mockSignIn,
               ),
             ],
           ),
