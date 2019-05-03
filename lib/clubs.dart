@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:epokaclubs/models/outline.dart';
 final leftSection = new Container(
   child: new CircleAvatar(
     backgroundColor: Colors.lightGreen,
@@ -40,54 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
            //leftSection,
            ListView(
              children:<Widget>[
-
-               Container(
-                 margin: const EdgeInsets.all(5.0),
-                 alignment: FractionalOffset(-0.4, 0.5),
-                 child: new CircleAvatar(
-                   backgroundColor: Colors.lightGreen,
-                   child: Text('HI'),
-
-                   radius: 70.0,
-                 ),
-                 padding: const EdgeInsets.fromLTRB(25.0, 22.0, 25.0, 20.0),
-                 //alignment: Alignment.topCenter,
-                 width: 360.0,
-                 height: 150.0,
-                 decoration: BoxDecoration(
-                   //width: 360.0,
-                   color: const Color(0xFF531737),
-                   borderRadius: new BorderRadius.circular(25.0),
-                   border: Border.all(
-                     color: Colors.black,
-                     width: 1.5,
-                   ),
-                 ),
-
-               ),Container(
-                 margin: const EdgeInsets.all(5.0),
-                 alignment: FractionalOffset(-0.4, 0.5),
-                 child: new CircleAvatar(
-                   backgroundColor: Colors.lightGreen,
-                   child: Text('HI'),
-
-                   radius: 70.0,
-                 ),
-                 padding: const EdgeInsets.fromLTRB(25.0, 22.0, 25.0, 20.0),
-                 //alignment: Alignment.topCenter,
-                 width: 360.0,
-                 height: 150.0,
-                 decoration: BoxDecoration(
-                   //width: 360.0,
-                   color: const Color(0xFF531737),
-                   borderRadius: new BorderRadius.circular(25.0),
-                   border: Border.all(
-                     color: Colors.black,
-                     width: 1.5,
-                   ),
-                 ),
-
-               ),
+                Outline.create('HI')
+               ,Outline.create('HII')
              ]
            )
 
