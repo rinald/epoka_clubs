@@ -37,6 +37,7 @@ class Outline extends StatelessWidget{
             ),
             new Container(
               child: Row(
+                //crossAxisAlignment:
                 //This has 2 texts=align them properly
                 children: <Widget>[
                   Column(
