@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:epokaclubs/models/outline.dart';
+import 'package:epokaclubs/models/event.dart';
 final leftSection = new Container(
   child: new CircleAvatar(
     backgroundColor: Colors.lightGreen,
@@ -25,7 +26,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-
       appBar: new AppBar(
         title: new Text('Clubs Informations '),
       ),
