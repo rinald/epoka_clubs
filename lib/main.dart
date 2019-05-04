@@ -23,7 +23,7 @@ class EpokaClubs extends StatelessWidget {
         '/': (context) => LoginPage(),
         '/subscriptions': (context) => Subscriptions(), // Reni & Halit
         '/events': (context) => Events(), // Albert & Erjon
-        '/clubs': (context) => Clubs(), // Besjon & Arber
+        '/clubs': (context) => MyHomePage(), // Besjon & Arber
       },
       title: 'Epoka Clubs',
       theme: ThemeData(
