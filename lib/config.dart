@@ -1,5 +1,6 @@
 library config;
-import 'util.dart';
+import './util/index.dart';
+import './models/epoka_user.dart';
 
 final googleSignIn = GoogleSignIn();
-MockUser user;
+EpokaUser user;

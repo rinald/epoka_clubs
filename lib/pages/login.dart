@@ -1,5 +1,6 @@
-import '../util.dart';
-import 'home.dart';
+import '../util/index.dart';
+import '../models/epoka_user.dart';
+import './home.dart';
 import '../config.dart' as config;
 
 class LoginPage extends StatefulWidget {
@@ -9,19 +10,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   void _showInvalidAccountAlert () => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Access Denied'),
-        content: Text('You can only sign in with a valid Epoka Mail account.'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('Dismiss'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
-        ],
-      )
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text('Access Denied'),
+      content: Text('You can only sign in with a valid Epoka Mail account.'),
+      actions: <Widget>[
+        FlatButton(
+          child: Text('Dismiss'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        )
+      ],
+    ),
   );
   
   // void _query() {
@@ -34,46 +35,46 @@ class _LoginPageState extends State<LoginPage> {
   //     });
   // }
 
-  void _mockSignIn() {
-    final _email = 'rshabani18@epoka.edu.al';
-    final _name = 'Rinald Shabani';
+  // void _mockSignIn() {
+  //   final _email = 'rshabani18@epoka.edu.al';
+  //   final _name = 'Rinald Shabani';
 
-    config.user = MockUser(
-      name: _name,
-      email: _email
-    );
+  //   config.user = MockUser(
+  //     name: _name,
+  //     email: _email
+  //   );
 
-    Navigator.push(context, MaterialPageRoute(
-      builder: (_) => HomePage()
-    ));
-  }
-
-  // void _signIn() {
-  //   config.googleSignIn.signIn().then((_account) {
-  //     final String _email = _account.email;
-
-  //     if (validEmail(_email)) {
-  //       var _type = EpokaUserType.Student;
-
-  //       if (!_email.contains(RegExp(r'[0-9]+'))) {
-  //         _type = EpokaUserType.Staff;
-  //       }
-
-  //       config.user = EpokaUser(
-  //           account: _account,
-  //           userType: _type
-  //       );
-
-  //       Navigator.push(context, MaterialPageRoute(
-  //           builder: (_) => HomePage()
-  //       ));
-  //     } else {
-  //       config.googleSignIn.signOut().then((_) {
-  //         _showInvalidAccountAlert();
-  //       });
-  //     }
-  //   });
+  //   Navigator.push(context, MaterialPageRoute(
+  //     builder: (_) => HomePage()
+  //   ));
   // }
+
+  void _signIn() {
+    config.googleSignIn.signIn().then((_account) {
+      final String _email = _account.email;
+
+      if (validEmail(_email)) {
+        var _type = EpokaUserType.Student;
+
+        if (!_email.contains(RegExp(r'[0-9]+'))) {
+          _type = EpokaUserType.Staff;
+        }
+
+        config.user = EpokaUser(
+            account: _account,
+            userType: _type
+        );
+
+        Navigator.push(context, MaterialPageRoute(
+            builder: (_) => HomePage()
+        ));
+      } else {
+        config.googleSignIn.signOut().then((_) {
+          _showInvalidAccountAlert();
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +90,8 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               Spacer(flex: 1),
               Container(
-                  height: 250,
-                  child: Image.asset('assets/images/epoka_icon.png')
+                height: 250,
+                child: Image.asset('assets/images/epoka_icon.png'),
               ),
               Spacer(flex: 1),
               RaisedButton(
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text('Sign in with Epoka Mail'),
                   ],
                 ),
-                onPressed: _mockSignIn,
+                onPressed: _signIn,
               ),
             ],
           ),

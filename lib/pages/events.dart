@@ -1,7 +1,7 @@
 import 'package:epokaclubs/models/event.dart';
 import 'package:flutter/material.dart';
   
-class Events extends StatelessWidget {
+class EventsPage extends StatelessWidget {
   final _events = <Event>[
     Event('Flutter Workshop', 'Programming Club', 'Kristjan'),
     Event('Next step for an engineer', 'Robotics Club', 'Not Kristjan'),

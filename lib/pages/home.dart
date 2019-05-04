@@ -1,4 +1,5 @@
-import '../util.dart';
+import '../util/index.dart';
+import '../widgets/index.dart';
 import '../config.dart' as config;
 
 class HomePage extends StatefulWidget {
@@ -7,9 +8,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _mockSignOut() {
-    Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-  }
+  // void _mockSignOut() {
+  //   Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+  // }
 
   void _signOut() {
     config.googleSignIn.signOut().then((_) {
@@ -42,16 +43,16 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.only(left: 20, top: 10),
-                      // child: GoogleUserCircleAvatar(identity: config.user.account),
-                      child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: Colors.blue,
-                        child: Center(child: Text('R'))
-                      )
+                      child: GoogleUserCircleAvatar(identity: config.user.account),
+                      // child: CircleAvatar(
+                      //   radius: 20.0,
+                      //   backgroundColor: Colors.blue,
+                      //   child: Center(child: Text('R'))
+                      // ),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20, top: 5),
-                      child: Text('${config.user.name}', 
+                      child: Text('${config.user.account.displayName}', 
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20),
-                      child: Text('${config.user.email}', 
+                      child: Text('${config.user.account.email}', 
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -89,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                     Text('Sign out'),
                   ],
                 ),
-                onPressed: _mockSignOut,
+                onPressed: _signOut,
               ),
             ),
           ]

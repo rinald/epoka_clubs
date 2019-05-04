@@ -1,6 +1,7 @@
-import '../util.dart';
+import '../util/index.dart';
+import '../models/subscription_sample.dart';
 
-class Subscriptions extends StatelessWidget {
+class SubscriptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext ctxt) {
     return Scaffold(

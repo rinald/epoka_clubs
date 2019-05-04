@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'pages/subscriptions.dart';
-import 'pages/events.dart';
-import 'pages/clubs.dart';
-import 'pages/login.dart';
+import './pages/index.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -20,9 +17,9 @@ class EpokaClubs extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
-        '/subscriptions': (context) => Subscriptions(), // Reni & Halit
-        '/events': (context) => Events(), // Albert & Erjon
-        '/clubs': (context) => Clubs(), // Besjon & Arber
+        '/subscriptions': (context) => SubscriptionsPage(), // Reni & Halit
+        '/events': (context) => EventsPage(), // Albert & Erjon
+        '/clubs': (context) => ClubsPage(), // Besjon & Arber
       },
       title: 'Epoka Clubs',
       theme: ThemeData(
