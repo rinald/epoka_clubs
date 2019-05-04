@@ -21,78 +21,128 @@ class Outline extends StatelessWidget{
     return InkWell(
 
           onTap: () {
-            print("Container clicked"); //ToDo Not working properly!
+            print("Container clicked"); //ToDo Implement another class with the selected club information
           },
-      child: Container(
-        margin: const EdgeInsets.all(5.0),
-        alignment: FractionalOffset(-0.4, 0.5),
-        child: Row(
-          //move the circular photo to the left
-          children: <Widget>[
-            new CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Text(text),
+      child: Stack(
+        children: <Widget>[
 
-              radius: 70.0,
-            ),
-            new Container(
-              child: Row(
-                //crossAxisAlignment:
-                //This has 2 texts=align them properly
+          Positioned(
+           // left: 2,
+          child: Container(
+
+            margin: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(0),
+            //alignment: FractionalOffset(-0.4, 0.5),
+
+
+           child:  Align(
+             alignment: Alignment.centerRight,
+             child: Row(
+               crossAxisAlignment: CrossAxisAlignment.center,
+               mainAxisSize: MainAxisSize.min,
+                //move the circular photo to the left
                 children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                     Text(name,
-                          style: TextStyle(
-                          color: Colors.white,
-                        ),
+                  new Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(45.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        //crossAxisAlignment:
+                        //This has 2 texts=align them properly
+                        children: <Widget>[
+
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                             Text(name,
+                                  style: TextStyle(
+                                  color: Colors.white,
+                                    fontSize: 20,
+                                ),
+                              ),
+                              /*AutoSizeText(
+                                "A really long String",
+                                style: TextStyle(fontSize: 30.0),
+                                minFontSize: 18.0,
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                              )*/
+                              Text(descr,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,),),
+
+                            ],
+                          ),
+
+//                    Column(
+//                      children: <Widget>[
+//                      ],
+//                    ),
+
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: IconButton(
+                              color: Colors.white,
+                              icon: Icon(Icons.favorite),
+                              iconSize: 45,
+                              onPressed: (){
+                                doSomething();
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                      /*AutoSizeText(
-                        "A really long String",
-                        style: TextStyle(fontSize: 30.0),
-                        minFontSize: 18.0,
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
-                      )*/
-                      Text(descr,
-                        style: TextStyle(
-                            color: Colors.white),),
+                    ),
 
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-
-                      Icon(Icons.favorite, color: Colors.red),//Favourite Icon used to subscribe this club
-
-                    ],
 
                   )
                 ],
               ),
+           ),
+
+//            padding: const EdgeInsets.fromLTRB(25.0, 22.0, 25.0, 20.0),
+
+            width: 365.0,
+            height: 145.0,
+            decoration: BoxDecoration(
+
+              color: Colors.lightBlue,
+              borderRadius: new BorderRadius.circular(25.0),
+              border: Border.all(
+                color: Colors.white,
+                width: 1,
+              ),
+            ),
 
 
-            )
-          ],
-        ),
-        padding: const EdgeInsets.fromLTRB(25.0, 22.0, 25.0, 20.0),
-        //alignment: Alignment.topCenter,
-        width: 360.0,
-        height: 150.0,
-        decoration: BoxDecoration(
-          //width: 360.0,
-          //color: const Color(0xFF531737),
-          color: Colors.lightBlue,
-          borderRadius: new BorderRadius.circular(25.0),
-          border: Border.all(
-            color: Colors.black,
-            width: 1.5,
+            ),
           ),
-        ),
+          Positioned(
+          left: 15,
+          bottom: 25,
+          top: 25,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Text(text),
 
+              radius: 55.0,
+            ),
+          ),
+          ),
+        ],
       ),
-
     );
   }
 
+}
+
+void doSomething() {
+  //Do something
+  //ToDo Connect subscriptions with club
+  print('You subscribed to this club!');
 }
