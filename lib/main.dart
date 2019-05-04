@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './pages/index.dart';
+import './app.dart';
+import 'package:bloc/bloc.dart';
+
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onTransition(Transition transition) {
+    super.onTransition(transition);
+    print(transition);
+  }
+
+  @override
+  void onError(Object error, StackTrace stacktrace) {
+    super.onError(error, stacktrace);
+    print(error);
+  }
+}
 
 void main() {
+  BlocSupervisor().delegate = SimpleBlocDelegate();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.blue[900]
   ));
-  runApp(EpokaClubs());
-}
-
-class EpokaClubs extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => LoginPage(),
-        '/subscriptions': (context) => SubscriptionsPage(), // Reni & Halit
-        '/events': (context) => EventsPage(), // Albert & Erjon
-        '/clubs': (context) => ClubsPage(), // Besjon & Arber
-      },
-      title: 'Epoka Clubs',
-      theme: ThemeData(
-        primaryColor: Colors.blue[800],
-      ),
-    );
-  }
+  runApp(App());
 }

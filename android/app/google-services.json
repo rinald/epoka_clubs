@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "551395885861-eqn8bvlne92e6c2o9qq7ebhga92kjsf7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "al.edu.epoka.clubs.epokaclubs",
-            "certificate_hash": "15e40473d5aba4e60183556a956bc031eff9e707"
-          }
-        },
-        {
           "client_id": "551395885861-icj84e3tvf2o32f9pld9v1j9u8q4hn0g.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -31,24 +23,12 @@
           }
         },
         {
-          "client_id": "551395885861-m45tqkju50dqnbm6dg199bqjv05p2iit.apps.googleusercontent.com",
+          "client_id": "551395885861-eqn8bvlne92e6c2o9qq7ebhga92kjsf7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "al.edu.epoka.clubs.epokaclubs",
-            "certificate_hash": "178224cf92841641bbd7afc6803ae0928443af4a"
+            "certificate_hash": "15e40473d5aba4e60183556a956bc031eff9e707"
           }
-        },
-        {
-          "client_id": "551395885861-o397jfu5b1ap126l2ap9h3elphfmih55.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "al.edu.epoka.clubs.epokaclubs",
-            "certificate_hash": "0b976f3a7b1c1b0c22254fcedf58d8bb10ebe02b"
-          }
-        },
-        {
-          "client_id": "551395885861-5ngpaoo8fc1k19fssocbj7c0o02oqbng.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -60,7 +40,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "551395885861-5ngpaoo8fc1k19fssocbj7c0o02oqbng.apps.googleusercontent.com",
+              "client_id": "551395885861-4cshr44ks7v54coo36b401goma4e0s9l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

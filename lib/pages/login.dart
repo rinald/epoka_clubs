@@ -1,7 +1,8 @@
 import '../util/index.dart';
-import '../models/epoka_user.dart';
-import './home.dart';
-import '../config.dart' as config;
+// import '../models/epoka_user.dart';
+// import './home.dart';
+import '../blocs/authentication/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,92 +25,53 @@ class _LoginPageState extends State<LoginPage> {
       ],
     ),
   );
-  
-  // void _query() {
-  //   Firestore.instance.collection('Clubs')
-  //     .snapshots()
-  //     .listen((data) {
-  //       data.documents.forEach((doc) {
-  //         print(doc['admin']);
-  //       });
-  //     });
-  // }
-
-  // void _mockSignIn() {
-  //   final _email = 'rshabani18@epoka.edu.al';
-  //   final _name = 'Rinald Shabani';
-
-  //   config.user = MockUser(
-  //     name: _name,
-  //     email: _email
-  //   );
-
-  //   Navigator.push(context, MaterialPageRoute(
-  //     builder: (_) => HomePage()
-  //   ));
-  // }
-
-  void _signIn() {
-    config.googleSignIn.signIn().then((_account) {
-      final String _email = _account.email;
-
-      if (validEmail(_email)) {
-        var _type = EpokaUserType.Student;
-
-        if (!_email.contains(RegExp(r'[0-9]+'))) {
-          _type = EpokaUserType.Staff;
-        }
-
-        config.user = EpokaUser(
-            account: _account,
-            userType: _type
-        );
-
-        Navigator.push(context, MaterialPageRoute(
-            builder: (_) => HomePage()
-        ));
-      } else {
-        config.googleSignIn.signOut().then((_) {
-          _showInvalidAccountAlert();
-        });
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Epoka Clubs'),
-      ),
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Spacer(flex: 1),
-              Container(
-                height: 250,
-                child: Image.asset('assets/images/epoka_icon.png'),
-              ),
-              Spacer(flex: 1),
-              RaisedButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+    final _bloc = BlocProvider.of<AuthenticationBloc>(context);
+
+    return BlocListener(
+      bloc: _bloc,
+      listener: (context, AuthenticationState state) {
+        if (state.signedIn == true) {
+          Navigator.pushNamed(context, '/home');
+        } else if (state.emailValid == false) {
+          _showInvalidAccountAlert();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Epoka Clubs'),
+        ),
+        body: Center(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Spacer(flex: 1),
+                Container(
+                  height: 250,
+                  child: Image.asset('assets/images/epoka_icon.png'),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Icon(Icons.mail_outline),
-                    Text('Sign in with Epoka Mail'),
-                  ],
+                Spacer(flex: 1),
+                RaisedButton(
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Icon(Icons.mail_outline),
+                      Text('Sign in with Epoka Mail'),
+                    ],
+                  ),
+                  onPressed: _bloc.onSignIn,
                 ),
-                onPressed: _signIn,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

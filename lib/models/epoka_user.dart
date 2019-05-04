@@ -10,6 +10,14 @@ class EpokaUser {
 
   final GoogleSignInAccount account;
   final EpokaUserType userType;
+
+  @override
+  String toString() {
+    return '''EpokaUser {
+      account: $account,
+      userType: $userType,
+    }''';
+  }
 }
 
 class MockUser {
