@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import './pages/index.dart';
-import './util/user_repository.dart';
-import './blocs/authentication/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import './pages/pages.dart';
+import './utils/user_repository.dart';
+import './blocs/authentication/bloc.dart';
 
 class App extends StatefulWidget {
   @override

@@ -1,9 +1,6 @@
 import 'package:google_sign_in/google_sign_in.dart';
 
-enum EpokaUserType {
-  Staff,
-  Student
-}
+enum EpokaUserType { Staff, Student }
 
 class EpokaUser {
   EpokaUser({this.account, this.userType});
@@ -13,10 +10,12 @@ class EpokaUser {
 
   @override
   String toString() {
-    return '''EpokaUser {
+    return '''
+    EpokaUser {
       account: $account,
       userType: $userType,
-    }''';
+    }
+    ''';
   }
 }
 

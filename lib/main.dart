@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './app.dart';
 import 'package:bloc/bloc.dart';
+
+import './app.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -19,8 +20,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 
 void main() {
   BlocSupervisor().delegate = SimpleBlocDelegate();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.blue[900]
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.blue[900]));
   runApp(App());
 }

@@ -1,12 +1,14 @@
 import 'dart:async';
-import '../util/index.dart';
+
 import '../models/epoka_user.dart';
+import '../utils/utils.dart';
 
 class UserRepository {
   final _googleSignIn = GoogleSignIn();
 
   Future<EpokaUser> signIn() async {
     EpokaUser user;
+
     final GoogleSignInAccount _account = await _googleSignIn.signIn();
     final String _email = _account.email;
 

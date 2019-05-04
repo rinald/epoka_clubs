@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+
 import './bloc.dart';
 import '../../models/epoka_user.dart';
-import '../../util/user_repository.dart';
+import '../../utils/user_repository.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc
+    extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({this.repository});
   final UserRepository repository;
 

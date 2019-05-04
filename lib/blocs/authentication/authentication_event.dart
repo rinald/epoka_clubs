@@ -4,4 +4,5 @@ import 'package:meta/meta.dart';
 abstract class AuthenticationEvent {}
 
 class SignInEvent extends AuthenticationEvent {}
+
 class SignOutEvent extends AuthenticationEvent {}

@@ -1,14 +1,10 @@
-import '../util/index.dart';
-import '../widgets/index.dart';
-import '../blocs/authentication/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+import '../blocs/authentication/bloc.dart';
+import '../utils/utils.dart';
+import '../widgets/widgets.dart';
 
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _bloc = BlocProvider.of<AuthenticationBloc>(context);
@@ -16,7 +12,7 @@ class _HomePageState extends State<HomePage> {
     return BlocListener(
       bloc: _bloc,
       listener: (context, AuthenticationState state) {
-        if (state.signedIn == false) {
+        if (!state.signedIn) {
           Navigator.popUntil(context, ModalRoute.withName('/'));
         }
       },
@@ -35,19 +31,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                           height: 100,
                         ),
-                      )
+                      ),
                     ],
                   ),
-                  Column (
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         margin: EdgeInsets.only(left: 20, top: 10),
-                        child: GoogleUserCircleAvatar(identity: _bloc.currentState.user.account),
+                        child: GoogleUserCircleAvatar(
+                            identity: _bloc.currentState.user.account),
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 20, top: 5),
-                        child: Text('${_bloc.currentState.user.account.displayName}', 
+                        child: Text(
+                          '${_bloc.currentState.user.account.displayName}',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -55,7 +53,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 20),
-                        child: Text('${_bloc.currentState.user.account.email}', 
+                        child: Text(
+                          '${_bloc.currentState.user.account.email}',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -88,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: _bloc.onSignOut,
                 ),
               ),
-            ]
+            ],
           ),
         ),
         appBar: AppBar(
@@ -102,7 +101,8 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(Icons.error, 
+                Icon(
+                  Icons.error,
                   size: 100,
                   color: Colors.grey,
                 ),

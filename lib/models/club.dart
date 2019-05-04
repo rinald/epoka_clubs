@@ -4,10 +4,11 @@ class Club {
   final String admin;
   final String name;
 
-  Club.fromMap(Map<String, dynamic> data, String id)
-      : this(
-    id: id,
-    name: data['name'],
-    admin: data['admin'],
-  );
+  factory Club.fromMap(Map<String, dynamic> data, String id) {
+    return Club(
+      id: id,
+      name: data['name'],
+      admin: data['admin'],
+    );
+  }
 }

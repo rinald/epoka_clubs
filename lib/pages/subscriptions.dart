@@ -1,5 +1,5 @@
-import '../util/index.dart';
 import '../models/subscription_sample.dart';
+import '../utils/utils.dart';
 
 class SubscriptionsPage extends StatelessWidget {
   @override
@@ -21,12 +21,12 @@ class ListDisplay extends StatelessWidget {
     SubscriptionSample('Halit', 4),
     SubscriptionSample('Kristjan', 5),
   ];
-  
+
   @override
-  Widget build (BuildContext ctxt) {
+  Widget build(BuildContext ctxt) {
     return ListView.builder(
       itemCount: _subs.length,
-      itemBuilder:(context, index){
+      itemBuilder: (context, index) {
         return ListTile(
           leading: Text('${_subs[index].id}'),
           title: Text('${_subs[index].name}'),
@@ -36,4 +36,3 @@ class ListDisplay extends StatelessWidget {
     );
   }
 }
-

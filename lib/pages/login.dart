@@ -1,31 +1,9 @@
-import '../util/index.dart';
-// import '../models/epoka_user.dart';
-// import './home.dart';
-import '../blocs/authentication/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+import '../blocs/authentication/bloc.dart';
+import '../utils/utils.dart';
 
-class _LoginPageState extends State<LoginPage> {
-  void _showInvalidAccountAlert () => showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text('Access Denied'),
-      content: Text('You can only sign in with a valid Epoka Mail account.'),
-      actions: <Widget>[
-        FlatButton(
-          child: Text('Dismiss'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        )
-      ],
-    ),
-  );
-
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _bloc = BlocProvider.of<AuthenticationBloc>(context);
@@ -33,10 +11,10 @@ class _LoginPageState extends State<LoginPage> {
     return BlocListener(
       bloc: _bloc,
       listener: (context, AuthenticationState state) {
-        if (state.signedIn == true) {
+        if (state.signedIn) {
           Navigator.pushNamed(context, '/home');
-        } else if (state.emailValid == false) {
-          _showInvalidAccountAlert();
+        } else if (!state.emailValid) {
+          showInvalidAccountAlert(context);
         }
       },
       child: Scaffold(
