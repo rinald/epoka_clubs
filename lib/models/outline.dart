@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:epokaclubs/details.dart';
+import 'package:epokaclubs/data.dart';
 
 class Outline extends StatelessWidget{
 
-  Outline.create(text,name,descr){
+  Outline.create(text,this.name,this.descr,this.id){
     this.text=text;//ToDo From text = > image(How?!)
-    this.name=name;
-    this.descr=descr;
     //ToDo We should use this to update the UI of the club pages
     //this.icon=icon;
     //this.route=route;
   }
-  String text;
-  String name;
-  String descr;
+  String text, name, descr;
+  int id;
   //Icon icon;
   //Route route;
 
   @override
   Widget build(BuildContext cont){
     return InkWell(
-
           onTap: () {
-            print("Container clicked"); //ToDo Implement another class with the selected club information
+            Navigator.push(
+                cont,
+                MaterialPageRoute(
+                    builder: (context) => DetailsPage(
+                      inf: Data.infList[id],
+                    )));
           },
       child: Stack(
         children: <Widget>[

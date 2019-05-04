@@ -20,7 +20,7 @@ class EpokaClubs extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
+        '/': (context) => MyHomePage(),
         '/subscriptions': (context) => Subscriptions(), // Reni & Halit
         '/events': (context) => Events(), // Albert & Erjon
         '/clubs': (context) => MyHomePage(), // Besjon & Arber
