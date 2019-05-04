@@ -41,8 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
            //leftSection,
            ListView(
              children:<Widget>[
-                Outline.create('HI')
-               ,Outline.create('HII')
+
+               Outline.create('Foto_1','Emri_1','This is club descritpion!'),
+               Outline.create('Foto_2','Emri_2','This is club description!')
              ]
            )
 
