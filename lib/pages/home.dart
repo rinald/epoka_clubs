@@ -4,6 +4,12 @@ import '../blocs/authentication/bloc.dart';
 import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 
+void _onStateChange(BuildContext context, AuthenticationState state) {
+  if (!state.signedIn) {
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+  }
+}
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,11 +17,7 @@ class HomePage extends StatelessWidget {
 
     return BlocListener(
       bloc: _bloc,
-      listener: (context, AuthenticationState state) {
-        if (!state.signedIn) {
-          Navigator.popUntil(context, ModalRoute.withName('/'));
-        }
-      },
+      listener: _onStateChange,
       child: Scaffold(
         drawer: Drawer(
           child: ListView(
@@ -80,7 +82,7 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Icon(Icons.exit_to_app),
+                      Icon(FontAwesomeIcons.signOutAlt),
                       Text('Sign out'),
                     ],
                   ),
@@ -107,7 +109,7 @@ class HomePage extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Text('Nothing to see'),
-                // Text('${config.user.userType}'),
+                Text('${_bloc.currentState.user.userType}'),
               ],
             ),
           ),

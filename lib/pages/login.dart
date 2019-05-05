@@ -3,6 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/authentication/bloc.dart';
 import '../utils/utils.dart';
 
+void _onStateChange(BuildContext context, AuthenticationState state) {
+  if (state.signedIn) {
+    Navigator.pushNamed(context, '/home');
+  } else if (!state.emailValid) {
+    showInvalidAccountAlert(context);
+  }
+}
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,13 +18,7 @@ class LoginPage extends StatelessWidget {
 
     return BlocListener(
       bloc: _bloc,
-      listener: (context, AuthenticationState state) {
-        if (state.signedIn) {
-          Navigator.pushNamed(context, '/home');
-        } else if (!state.emailValid) {
-          showInvalidAccountAlert(context);
-        }
-      },
+      listener: _onStateChange,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Epoka Clubs'),
@@ -42,7 +44,7 @@ class LoginPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Icon(Icons.mail_outline),
+                      Icon(FontAwesomeIcons.signInAlt),
                       Text('Sign in with Epoka Mail'),
                     ],
                   ),

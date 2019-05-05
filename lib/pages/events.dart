@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/event.dart';
+import '../utils/utils.dart';
 
 final _events = <Event>[
   Event('Flutter Workshop', 'Programming Club', 'Kristjan'),
@@ -19,6 +20,11 @@ class EventsPage extends StatelessWidget {
         itemCount: _events.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: Icon(
+              clubIcons[_events[index].club],
+              color: Colors.blue,
+              size: 30.0,
+            ),
             title: Text('${_events[index].title}'),
             subtitle: Text('${_events[index].club}'),
           );

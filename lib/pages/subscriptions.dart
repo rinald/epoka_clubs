@@ -28,9 +28,17 @@ class ListDisplay extends StatelessWidget {
       itemCount: _subs.length,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Text('${_subs[index].id}'),
-          title: Text('${_subs[index].name}'),
-          trailing: Icon(Icons.message),
+          leading: Icon(
+            FontAwesomeIcons.userAlt,
+            color: Colors.blue,
+          ),
+          title: Text(
+            '${_subs[index].name}',
+            style: TextStyle(
+              fontSize: 17.5,
+            ),
+          ),
+          // trailing: Icon(FontAwesomeIcons.info),
         );
       },
     );
