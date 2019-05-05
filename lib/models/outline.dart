@@ -4,14 +4,14 @@ import 'package:epokaclubs/data.dart';
 
 class Outline extends StatelessWidget{
 
-  Outline.create(text,this.name,this.descr,this.id){
-    this.text=text;//ToDo From text = > image(How?!)
+  Outline.create(text,this.name,this.descr,this.ids){
+    this.text=text;
     //ToDo We should use this to update the UI of the club pages
     //this.icon=icon;
     //this.route=route;
   }
   String text, name, descr;
-  int id;
+  int ids;
   //Icon icon;
   //Route route;
 
@@ -23,21 +23,17 @@ class Outline extends StatelessWidget{
                 cont,
                 MaterialPageRoute(
                     builder: (context) => DetailsPage(
-                      inf: Data.infList[id],
+                      inf: Data.infList[ids],
                     )));
           },
       child: Stack(
         children: <Widget>[
-
           Positioned(
            // left: 2,
           child: Container(
-
             margin: const EdgeInsets.all(5.0),
             padding: const EdgeInsets.all(0),
             //alignment: FractionalOffset(-0.4, 0.5),
-
-
            child:  Align(
              alignment: Alignment.centerRight,
              child: Row(
@@ -54,7 +50,6 @@ class Outline extends StatelessWidget{
                         //crossAxisAlignment:
                         //This has 2 texts=align them properly
                         children: <Widget>[
-
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisSize: MainAxisSize.max,
@@ -76,15 +71,12 @@ class Outline extends StatelessWidget{
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,),),
-
                             ],
                           ),
-
 //                    Column(
 //                      children: <Widget>[
 //                      ],
 //                    ),
-
                           Align(
                             alignment: Alignment.centerRight,
                             child: IconButton(
@@ -99,19 +91,14 @@ class Outline extends StatelessWidget{
                         ],
                       ),
                     ),
-
-
                   )
                 ],
               ),
            ),
-
 //            padding: const EdgeInsets.fromLTRB(25.0, 22.0, 25.0, 20.0),
-
             width: 365.0,
             height: 145.0,
             decoration: BoxDecoration(
-
               color: Colors.lightBlue,
               borderRadius: new BorderRadius.circular(25.0),
               border: Border.all(
@@ -119,23 +106,24 @@ class Outline extends StatelessWidget{
                 width: 1,
               ),
             ),
-
-
             ),
           ),
           Positioned(
-          left: 15,
+          left: 10,
           bottom: 25,
           top: 25,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Text(text),
-
-              radius: 55.0,
+            child: ClipOval(
+              child: Hero(
+                tag: Data.infList[ids].id,
+                child: FadeInImage(
+                  image:
+                  NetworkImage(Data.infList[ids].img),
+                  fit: BoxFit.cover,
+                  placeholder:
+                  AssetImage('assets/images/loading.gif'),
+                ),
+              ),
             ),
-          ),
           ),
         ],
       ),
@@ -143,7 +131,6 @@ class Outline extends StatelessWidget{
   }
 
 }
-
 void doSomething() {
   //Do something
   //ToDo Connect subscriptions with club

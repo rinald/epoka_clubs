@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:epokaclubs/models/event.dart';
 
+
 class DetailsPage extends StatelessWidget {
   final Info inf;
   DetailsPage({this.inf});
-  @override
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
@@ -20,10 +21,10 @@ class DetailsPage extends StatelessWidget {
                 background: Hero(
                   tag: inf.id,
                   child: FadeInImage(
-                    image: NetworkImage(//ToDo Image not working yet!
+                    image: NetworkImage(
                         inf.img),
                     fit: BoxFit.cover,
-                    placeholder: AssetImage('assets/images/loading.gif'),
+                    placeholder: AssetImage('res/img/loading.gif'),
                   ),
                 ),
               ),
