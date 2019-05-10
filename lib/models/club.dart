@@ -1,17 +1,9 @@
-class Club {
-  const Club({
-    this.name,
-    this.admin = '',
-  });
-  // final String id;
-  final String admin;
-  final String name;
+import '../utils/utils.dart';
 
-  factory Club.fromMap(Map<String, dynamic> data, String id) {
-    return Club(
-      // id: id,
-      name: data['name'],
-      admin: data['admin'],
-    );
-  }
+class Club {
+  const Club({this.icon, this.name, this.description});
+
+  final IconData icon;
+  final String name;
+  final String description;
 }

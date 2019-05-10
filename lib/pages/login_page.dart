@@ -5,7 +5,7 @@ import '../utils/utils.dart';
 
 void _onStateChange(BuildContext context, AuthenticationState state) {
   if (state.signedIn) {
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, '/home');
   } else if (!state.emailValid) {
     showInvalidAccountAlert(context);
   }
@@ -21,7 +21,12 @@ class LoginPage extends StatelessWidget {
       listener: _onStateChange,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Epoka Clubs'),
+          title: Text(
+            'Epoka Clubs',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: Center(
           child: Container(
@@ -35,8 +40,8 @@ class LoginPage extends StatelessWidget {
                   child: Image.asset('assets/images/epoka_icon.png'),
                 ),
                 Spacer(flex: 1),
-                RaisedButton(
-                  color: Colors.blue,
+                FlatButton(
+                  color: Theme.of(context).accentColor,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),

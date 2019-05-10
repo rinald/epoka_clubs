@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import './pages/pages.dart';
-import './utils/user_repository.dart';
 import './blocs/authentication/bloc.dart';
+import './pages/pages.dart';
+import './theme/theme.dart';
 
 class App extends StatefulWidget {
   @override
@@ -11,12 +11,11 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final _repository = UserRepository();
   AuthenticationBloc _bloc;
 
   void initState() {
     super.initState();
-    _bloc = AuthenticationBloc(repository: _repository);
+    _bloc = AuthenticationBloc();
   }
 
   @override
@@ -29,14 +28,9 @@ class _AppState extends State<App> {
         routes: {
           '/': (_) => LoginPage(),
           '/home': (_) => HomePage(),
-          '/subscriptions': (_) => SubscriptionsPage(),
-          '/events': (_) => EventsPage(),
-          '/clubs': (_) => ClubsPage(),
         },
         title: 'Epoka Clubs',
-        theme: ThemeData(
-          primaryColor: Colors.blue[800],
-        ),
+        theme: lightTheme,
       ),
     );
   }

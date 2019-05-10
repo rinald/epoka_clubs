@@ -8,8 +8,7 @@ import '../../utils/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc({this.repository});
-  final UserRepository repository;
+  final UserRepository _repository = UserRepository();
 
   @override
   AuthenticationState get initialState => AuthenticationState.initial();
@@ -27,7 +26,7 @@ class AuthenticationBloc
     AuthenticationEvent event,
   ) async* {
     if (event is SignInEvent) {
-      EpokaUser _user = await repository.signIn();
+      EpokaUser _user = await _repository.signIn();
 
       print('User: $_user');
 
@@ -37,7 +36,7 @@ class AuthenticationBloc
         yield AuthenticationState.failure();
       }
     } else if (event is SignOutEvent) {
-      repository.signOut();
+      _repository.signOut();
       yield AuthenticationState.initial();
     }
   }

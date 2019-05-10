@@ -1,5 +1,2 @@
-export './clubs.dart';
-export './events.dart';
-export './home.dart';
-export './login.dart';
-export './subscriptions.dart';
+export './home/home_page.dart';
+export './login_page.dart';

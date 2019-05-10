@@ -1,30 +1,54 @@
+import '../models/club.dart';
 import '../utils/utils.dart';
 
 class ClubCard extends StatelessWidget {
-  const ClubCard({this.name, this.icon});
-  final String name;
-  final IconData icon;
+  const ClubCard(this.club);
+  final Club club;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Icon(
-            icon,
-            size: 40.0,
-            color: Colors.blue,
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Text(
-            name,
-            style: TextStyle(
-              // fontWeight: FontWeight.bold,
-              fontSize: 15.0,
+          ListTile(
+            leading: Icon(
+              club.icon,
+              color: Theme.of(context).accentColor,
             ),
+            title: Text(club.name),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              left: 5.0,
+            ),
+            child: Text(
+              club.description,
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: FlatButton(
+                  color: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Text(
+                    'Follow',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+            ],
           ),
         ],
       ),

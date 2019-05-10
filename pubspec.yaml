@@ -1,5 +1,5 @@
 name: epokaclubs
-description: A new fresh start for FLUTTERSITS
+description: An app for Epoka University's Clubs
 
 version: 0.1.0+1
 
@@ -27,6 +27,15 @@ flutter_icons:
   image_path: assets/images/epoka_icon.png
 
 flutter:
+  fonts:
+    - family: FiraSans
+      fonts:
+        - asset: fonts/FiraSans-Italic.ttf
+        - asset: fonts/FiraSans-Thin.ttf
+        - asset: fonts/FiraSans-Light.ttf
+        - asset: fonts/FiraSans-Regular.ttf
+        - asset: fonts/FiraSans-Medium.ttf
+        - asset: fonts/FiraSans-SemiBold.ttf
   assets:
     - assets/images/epoka_logo.png
     - assets/images/epoka_icon.png

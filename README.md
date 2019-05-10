@@ -1,8 +1,3 @@
-# epokaclubs
+# Epoka Clubs
 
-A new fresh start for FLUTTERSITS
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+An app for Epoka University's Clubs
