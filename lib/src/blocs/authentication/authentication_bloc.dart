@@ -8,7 +8,7 @@ import '../../utils/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final UserRepository _repository = UserRepository();
+  final _repository = UserRepository();
 
   @override
   AuthenticationState get initialState => AuthenticationState.initial();

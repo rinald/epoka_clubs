@@ -1,4 +1,5 @@
 import '../../data/events.dart';
+import '../../data/clubs.dart';
 import '../../utils/utils.dart';
 
 class EventsView extends StatelessWidget {
@@ -9,7 +10,7 @@ class EventsView extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListTile(
           leading: Icon(
-            clubIcons[events[index].club],
+            clubs.singleWhere((_club) => _club.name == events[index].club).icon,
             color: Theme.of(context).accentColor,
             size: 30.0,
           ),

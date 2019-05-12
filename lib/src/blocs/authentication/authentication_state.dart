@@ -30,12 +30,6 @@ class AuthenticationState {
 
   @override
   String toString() {
-    return '''
-    AuthenticationState {
-      user: $user,
-      emailValid: $emailValid,
-      signedIn: $signedIn,
-    }
-    ''';
+    return 'AuthenticationState {user: $user, emailValid: $emailValid, signedIn: $signedIn}';
   }
 }

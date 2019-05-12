@@ -11,11 +11,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _index = 0;
-
-  final _options = <Widget>[
-    EventsView(),
-    ClubsView(),
-    UserView(),
+  final _controller = PageController();
+  final _titles = <String>[
+    'Feed',
+    'Discover',
+    'Account',
   ];
 
   @override
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Epoka Clubs',
+          _titles[_index],
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -38,17 +38,38 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: _options[_index],
+      body: PageView(
+        controller: _controller,
+        children: <Widget>[
+          EventsView(),
+          ClubsView(),
+          UserView(),
+        ],
+        onPageChanged: (index) {
+          setState(() {
+            _index = index;
+          });
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.home),
+            title: Container(
+              height: 0.0,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.compass),
+            title: Container(
+              height: 0.0,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.userAlt),
+            title: Container(
+              height: 0.0,
+            ),
           ),
         ],
         currentIndex: _index,
@@ -56,6 +77,14 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             _index = index;
           });
+
+          _controller.animateToPage(
+            index,
+            duration: Duration(
+              milliseconds: 500,
+            ),
+            curve: Curves.easeOutExpo,
+          );
         },
         fixedColor: Theme.of(context).primaryColor,
       ),
