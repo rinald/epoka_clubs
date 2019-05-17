@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import '../../blocs/authentication/bloc.dart';
 import '../../utils/utils.dart';
+import '../../widgets/google_avatar.dart';
 
 void _onStateChanged(BuildContext context, AuthenticationState state) {
   if (!state.signedIn) {
@@ -18,8 +21,9 @@ class UserView extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: GoogleUserCircleAvatar(
-              identity: _bloc.currentState.user.account,
+            leading: GoogleAvatar(
+              url: _bloc.currentState.user.account.photoUrl,
+              radius: 20.0,
             ),
             title: Text(_bloc.currentState.user.account.displayName),
             subtitle: Text(_bloc.currentState.user.account.email),
@@ -34,15 +38,15 @@ class UserView extends StatelessWidget {
             child: FlatButton(
               color: Theme.of(context).accentColor,
               textColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Icon(FontAwesomeIcons.signOutAlt),
-                  Text('Sign out'),
-                ],
+              child: SizedBox(
+                width: 300.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Icon(FontAwesomeIcons.signOutAlt),
+                    Text('Sign out'),
+                  ],
+                ),
               ),
               onPressed: _bloc.onSignOut,
             ),

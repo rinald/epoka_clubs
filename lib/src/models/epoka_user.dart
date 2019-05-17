@@ -1,11 +1,11 @@
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:epokaclubs/src/utils/utils.dart';
 
 enum EpokaUserType { Staff, Student }
 
 class EpokaUser {
   EpokaUser({this.account, this.userType});
 
-  final GoogleSignInAccount account;
+  final FirebaseUser account;
   final EpokaUserType userType;
 
   @override

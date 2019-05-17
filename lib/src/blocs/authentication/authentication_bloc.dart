@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/services.dart';
 
 import './bloc.dart';
 import '../../models/epoka_user.dart';
@@ -26,14 +27,22 @@ class AuthenticationBloc
     AuthenticationEvent event,
   ) async* {
     if (event is SignInEvent) {
-      EpokaUser _user = await _repository.signIn();
+      EpokaUser _user;
 
-      print('User: $_user');
+      try {
+        _user = await _repository.signIn();
 
-      if (_user != null) {
-        yield AuthenticationState.success(_user);
-      } else {
-        yield AuthenticationState.failure();
+        if (_user != null) {
+          yield AuthenticationState.success(_user);
+        } else {
+          yield AuthenticationState.failure();
+        }
+      } catch (exception) {
+        if (exception is PlatformException) {
+          if (exception.code == 'ERROR_NETWORK_REQUEST_FAILED') {
+            yield AuthenticationState.offline();
+          }
+        }
       }
     } else if (event is SignOutEvent) {
       _repository.signOut();

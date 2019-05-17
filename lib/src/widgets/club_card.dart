@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
+
 import '../models/club.dart';
 import '../utils/utils.dart';
+import '../pages/club_info.dart';
 
 class FollowButton extends StatefulWidget {
   @override
@@ -30,15 +33,8 @@ class _FollowButtonState extends State<FollowButton> {
   Widget build(BuildContext context) {
     return FlatButton(
       color: _color,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Text(
-        _text,
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
+      textColor: Colors.white,
+      child: Text(_text),
       onPressed: _toggleFollow,
     );
   }
@@ -53,45 +49,49 @@ class ClubCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
       child: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(
-                club.icon,
-                color: Theme.of(context).accentColor,
+        child: InkWell(
+          // highlightColor: Color(0x0F00AFF0),
+          // splashColor: Color(0x0F0C5BA6),
+          customBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+          onTap: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => ClubInfoPage(club),
               ),
-              title: Text(
-                club.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(
+                  club.icon,
+                  color: Theme.of(context).accentColor,
                 ),
+                title: Text(club.name),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                left: 15.0,
-              ),
-              child: Text(
-                club.description,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.grey,
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                  vertical: 5.0,
                 ),
+                child: Text(club.description),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(5.0).copyWith(
-                    right: 10.0,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(5.0).copyWith(
+                      right: 10.0,
+                    ),
+                    child: FollowButton(),
                   ),
-                  child: FollowButton(),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

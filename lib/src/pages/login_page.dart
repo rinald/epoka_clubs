@@ -8,10 +8,12 @@ void _onStateChange(BuildContext context, AuthenticationState state) {
     Navigator.pushReplacementNamed(context, '/home');
   } else if (!state.emailValid) {
     showInvalidAccountAlert(context);
+  } else if (!state.online) {
+    showNetworkError(context);
   }
 }
 
-class LoginPage extends StatelessWidget {
+class _LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _bloc = BlocProvider.of<AuthenticationBloc>(context);
@@ -19,33 +21,24 @@ class LoginPage extends StatelessWidget {
     return BlocListener(
       bloc: _bloc,
       listener: _onStateChange,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Epoka Clubs',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        body: Center(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Spacer(flex: 1),
-                Container(
-                  height: 250,
-                  child: Image.asset('assets/images/epoka_icon.png'),
-                ),
-                Spacer(flex: 1),
-                FlatButton(
-                  color: Theme.of(context).accentColor,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
+      child: Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Spacer(flex: 1),
+              SizedBox(
+                width: 175,
+                height: 175,
+                child: Image.asset('assets/images/epoka_icon.png'),
+              ),
+              Spacer(flex: 1),
+              FlatButton(
+                color: Theme.of(context).accentColor,
+                textColor: Colors.white,
+                child: SizedBox(
+                  width: 300.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
@@ -53,13 +46,28 @@ class LoginPage extends StatelessWidget {
                       Text('Sign in with Epoka Mail'),
                     ],
                   ),
-                  onPressed: _bloc.onSignIn,
                 ),
-              ],
-            ),
+                onPressed: _bloc.onSignIn,
+              ),
+              SizedBox(
+                height: 75.0,
+              ),
+            ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Epoka Clubs'),
+      ),
+      body: _LoginPage(),
     );
   }
 }

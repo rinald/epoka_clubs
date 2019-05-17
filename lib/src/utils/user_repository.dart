@@ -4,6 +4,7 @@ import '../models/epoka_user.dart';
 import '../utils/utils.dart';
 
 class UserRepository {
+  final _firebaseAuth = FirebaseAuth.instance;
   final _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
@@ -15,28 +16,39 @@ class UserRepository {
     EpokaUser user;
 
     final GoogleSignInAccount _account = await _googleSignIn.signIn();
-    final String _email = _account.email;
+    final _googleAuth = await _account.authentication;
 
-    // if (emailValid(_email)) {
-    EpokaUserType _userType = EpokaUserType.Student;
-
-    if (!_email.contains(RegExp(r'[0-9]+'))) {
-      _userType = EpokaUserType.Staff;
-    }
-
-    user = EpokaUser(
-      account: _account,
-      userType: _userType,
+    final AuthCredential _credential = GoogleAuthProvider.getCredential(
+      accessToken: _googleAuth.accessToken,
+      idToken: _googleAuth.idToken,
     );
-    // } else {
-    //   user = null;
-    //   _googleSignIn.signOut();
-    // }
+
+    final FirebaseUser _firebaseUser =
+        await _firebaseAuth.signInWithCredential(_credential);
+
+    final String _email = _account.email;
+    if (emailValid(_email)) {
+      EpokaUserType _userType = EpokaUserType.Student;
+
+      if (!_email.contains(RegExp(r'[0-9]+'))) {
+        _userType = EpokaUserType.Staff;
+      }
+
+      user = EpokaUser(
+        account: _firebaseUser,
+        userType: _userType,
+      );
+    } else {
+      user = null;
+      _firebaseAuth.signOut();
+      _googleSignIn.signOut();
+    }
 
     return user;
   }
 
   void signOut() {
+    _firebaseAuth.signOut();
     _googleSignIn.signOut();
   }
 }
