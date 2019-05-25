@@ -15,7 +15,7 @@ class EventsView extends StatelessWidget {
           //   size: 30.0,
           // ),
           title: Text('${events[index].title}'),
-          subtitle: Text('${events[index].club}'),
+          subtitle: Text('${events[index].clubId.toString()}'),
         );
       },
     );
