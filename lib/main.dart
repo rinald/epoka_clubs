@@ -1,34 +1,62 @@
-import 'package:epokaclubs/home.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'subscriptions.dart';
-import 'events.dart';
-import 'clubs.dart';
-import 'login.dart';
+import './src/blocs/blocs.dart';
+import './src/pages/pages.dart';
+import './src/theme/theme.dart';
+import './src/utils/utils.dart';
 
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.blue[900]
-  ));
-  runApp(EpokaClubs());
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
 }
 
-class EpokaClubs extends StatelessWidget {
+/*
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onTransition(Transition transition) {
+    super.onTransition(transition);
+    print(transition);
+  }
+
+  @override
+  void onError(Object error, StackTrace stacktrace) {
+    super.onError(error, stacktrace);
+    print(error);
+  }
+}
+*/
+
+class _AppState extends State<App> {
+  AuthenticationBloc _bloc;
+
+  void initState() {
+    super.initState();
+    _bloc = AuthenticationBloc();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => MyHomePage(),
-        '/subscriptions': (context) => Subscriptions(), // Reni & Halit
-        '/events': (context) => Events(), // Albert & Erjon
-        '/clubs': (context) => MyHomePage(), // Besjon & Arber
-      },
-      title: 'Epoka Clubs',
-      theme: ThemeData(
-        primaryColor: Colors.blue[800],
+    return BlocProvider(
+      bloc: _bloc,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (_) => LoginPage(),
+          '/home': (_) => HomePage(),
+        },
+        title: 'Epoka Clubs',
+        theme: lightTheme,
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _bloc.dispose();
+  }
+}
+
+void main() {
+  // BlocSupervisor().delegate = SimpleBlocDelegate();
+  runApp(App());
 }
