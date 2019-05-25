@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: PageView(
+        physics: BouncingScrollPhysics(),
         controller: _controller,
         children: <Widget>[
           EventsView(),

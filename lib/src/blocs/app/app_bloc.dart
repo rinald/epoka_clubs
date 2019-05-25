@@ -9,7 +9,5 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   @override
   Stream<AppState> mapEventToState(
     AppEvent event,
-  ) async* {
-    // TODO: Add Logic
-  }
+  ) async* {}
 }

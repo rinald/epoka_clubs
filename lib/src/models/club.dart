@@ -6,4 +6,9 @@ class Club {
   final IconData icon;
   final String name;
   final String description;
+
+  @override
+  String toString() {
+    return 'Club(name: $name)';
+  }
 }

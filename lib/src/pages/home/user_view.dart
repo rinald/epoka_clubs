@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import '../../blocs/authentication/bloc.dart';
 import '../../utils/utils.dart';
 import '../../widgets/google_avatar.dart';

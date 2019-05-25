@@ -8,7 +8,6 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
-/*
 class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Transition transition) {
@@ -22,20 +21,24 @@ class SimpleBlocDelegate extends BlocDelegate {
     print(error);
   }
 }
-*/
 
 class _AppState extends State<App> {
-  AuthenticationBloc _bloc;
+  AuthenticationBloc _aBloc;
+  SubscriptionBloc _sBloc;
 
   void initState() {
     super.initState();
-    _bloc = AuthenticationBloc();
+    _aBloc = AuthenticationBloc();
+    _sBloc = SubscriptionBloc();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      bloc: _bloc,
+    return BlocProviderTree(
+      blocProviders: [
+        BlocProvider<AuthenticationBloc>(bloc: _aBloc),
+        BlocProvider<SubscriptionBloc>(bloc: _sBloc),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
@@ -52,11 +55,12 @@ class _AppState extends State<App> {
   @override
   void dispose() {
     super.dispose();
-    _bloc.dispose();
+    _aBloc.dispose();
+    _sBloc.dispose();
   }
 }
 
 void main() {
-  // BlocSupervisor().delegate = SimpleBlocDelegate();
+  BlocSupervisor().delegate = SimpleBlocDelegate();
   runApp(App());
 }
