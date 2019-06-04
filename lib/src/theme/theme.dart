@@ -15,6 +15,10 @@ final lightTheme = ThemeData(
   textTheme: textTheme,
   primaryTextTheme: textTheme,
   accentTextTheme: textTheme,
+  // appBarTheme: AppBarTheme(
+  //   color: primaryColor,
+  //   textTheme: textTheme,
+  // ),
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),

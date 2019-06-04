@@ -1,12 +1,7 @@
 import './src/blocs/blocs.dart';
-import './src/pages/pages.dart';
+import './src/screens/screens.dart';
 import './src/theme/theme.dart';
 import './src/utils/utils.dart';
-
-class App extends StatefulWidget {
-  @override
-  _AppState createState() => _AppState();
-}
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -22,29 +17,60 @@ class SimpleBlocDelegate extends BlocDelegate {
   }
 }
 
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
 class _AppState extends State<App> {
-  AuthenticationBloc _aBloc;
-  SubscriptionBloc _sBloc;
+  AppBloc _appBloc;
+  AuthenticationBloc _authBloc;
+  SubscriptionBloc _subsBloc;
 
   void initState() {
     super.initState();
-    _aBloc = AuthenticationBloc();
-    _sBloc = SubscriptionBloc();
+    _appBloc = AppBloc();
+    _authBloc = AuthenticationBloc();
+    _subsBloc = SubscriptionBloc();
+  }
+
+  void _onAppStateChange(BuildContext context, AppState state) {
+    if (state is AppInitial) {
+      _appBloc.onLoadPreferences();
+    } else if (state is AppLoaded) {
+      if (state.preferences.getBool('signedIn') ?? false) {
+        _authBloc.onSignIn();
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        Navigator.pushReplacementNamed(context, '/login');
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProviderTree(
       blocProviders: [
-        BlocProvider<AuthenticationBloc>(bloc: _aBloc),
-        BlocProvider<SubscriptionBloc>(bloc: _sBloc),
+        BlocProvider<AppBloc>(bloc: _appBloc),
+        BlocProvider<AuthenticationBloc>(bloc: _authBloc),
+        BlocProvider<SubscriptionBloc>(bloc: _subsBloc),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        home: BlocListener(
+          bloc: _appBloc,
+          listener: _onAppStateChange,
+          child: BlocBuilder(
+            bloc: _appBloc,
+            builder: (context, state) {
+              // print('Building...');
+              return SplashScreen();
+            },
+          ),
+        ),
         routes: {
-          '/': (_) => LoginPage(),
-          '/home': (_) => HomePage(),
+          '/login': (_) => LoginScreen(),
+          '/home': (_) => HomeScreen(),
         },
         title: 'Epoka Clubs',
         theme: lightTheme,
@@ -55,8 +81,9 @@ class _AppState extends State<App> {
   @override
   void dispose() {
     super.dispose();
-    _aBloc.dispose();
-    _sBloc.dispose();
+    _appBloc.dispose();
+    _authBloc.dispose();
+    _subsBloc.dispose();
   }
 }
 

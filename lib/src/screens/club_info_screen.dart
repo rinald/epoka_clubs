@@ -2,8 +2,8 @@ import '../utils/utils.dart';
 import '../models/club.dart';
 import '../data/events.dart';
 
-class ClubInfoPage extends StatelessWidget {
-  ClubInfoPage(this.club);
+class ClubInfoScreen extends StatelessWidget {
+  ClubInfoScreen(this.club);
   final Club club;
 
   @override

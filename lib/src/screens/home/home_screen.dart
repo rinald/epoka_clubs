@@ -4,42 +4,28 @@ import './user_view.dart';
 
 import '../../utils/utils.dart';
 
-class HomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
   final _controller = PageController();
-  final _titles = <String>[
-    'Feed',
-    'Discover',
-    'Account',
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _titles[_index],
+          'Epoka Clubs',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.search,
-              size: 20.0,
-            ),
-            onPressed: () {},
-          )
-        ],
       ),
       body: PageView(
-        physics: BouncingScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
         controller: _controller,
         children: <Widget>[
           EventsView(),
@@ -56,21 +42,15 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.home),
-            title: Container(
-              height: 0.0,
-            ),
+            title: Text('Feed'),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.compass),
-            title: Container(
-              height: 0.0,
-            ),
+            title: Text('Discover'),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.userAlt),
-            title: Container(
-              height: 0.0,
-            ),
+            title: Text('Account'),
           ),
         ],
         currentIndex: _index,
@@ -81,13 +61,12 @@ class _HomePageState extends State<HomePage> {
 
           _controller.animateToPage(
             index,
-            duration: Duration(
-              milliseconds: 500,
-            ),
+            duration: Duration(milliseconds: 500),
             curve: Curves.easeOutExpo,
           );
         },
         fixedColor: Theme.of(context).primaryColor,
+        showUnselectedLabels: false,
       ),
     );
   }

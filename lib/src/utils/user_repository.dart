@@ -12,32 +12,28 @@ class UserRepository {
     ],
   );
 
+  // Future<FirebaseUser> get user => _firebaseAuth.currentUser();
+
   Future<EpokaUser> signIn() async {
     EpokaUser user;
+    FirebaseUser _firebaseUser;
 
-    final GoogleSignInAccount _account = await _googleSignIn.signIn();
-    final _googleAuth = await _account.authentication;
+    _firebaseUser = await _firebaseAuth.currentUser();
 
-    final AuthCredential _credential = GoogleAuthProvider.getCredential(
-      accessToken: _googleAuth.accessToken,
-      idToken: _googleAuth.idToken,
-    );
+    if (_firebaseUser == null) {
+      final GoogleSignInAccount _account = await _googleSignIn.signIn();
+      final _googleAuth = await _account.authentication;
 
-    final FirebaseUser _firebaseUser =
-        await _firebaseAuth.signInWithCredential(_credential);
-
-    final String _email = _account.email;
-    if (emailValid(_email)) {
-      EpokaUserType _userType = EpokaUserType.Student;
-
-      if (!_email.contains(RegExp(r'[0-9]+'))) {
-        _userType = EpokaUserType.Staff;
-      }
-
-      user = EpokaUser(
-        account: _firebaseUser,
-        userType: _userType,
+      final AuthCredential _credential = GoogleAuthProvider.getCredential(
+        accessToken: _googleAuth.accessToken,
+        idToken: _googleAuth.idToken,
       );
+
+      _firebaseUser = await _firebaseAuth.signInWithCredential(_credential);
+    }
+
+    if (emailValid(_firebaseUser.email)) {
+      user = EpokaUser(account: _firebaseUser);
     } else {
       user = null;
       _firebaseAuth.signOut();

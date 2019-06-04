@@ -3,13 +3,13 @@ import 'package:epokaclubs/src/utils/utils.dart';
 enum EpokaUserType { Staff, Student }
 
 class EpokaUser {
-  EpokaUser({this.account, this.userType});
+  EpokaUser({this.account});
 
   final FirebaseUser account;
-  final EpokaUserType userType;
+  // final EpokaUserType userType;
 
   @override
   String toString() {
-    return 'EpokaUser {account: $account, userType: $userType}';
+    return 'EpokaUser {account: $account}';
   }
 }

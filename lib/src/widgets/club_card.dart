@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../models/club.dart';
 import '../utils/utils.dart';
-import '../pages/club_info.dart';
+import '../screens/club_info_screen.dart';
 
 class FollowButton extends StatefulWidget {
   FollowButton(this.club);
@@ -47,6 +47,7 @@ class _FollowButtonState extends State<FollowButton>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FlatButton(
       color: _color,
       textColor: Colors.white,
@@ -80,7 +81,7 @@ class ClubCard extends StatelessWidget {
             Navigator.push(
               context,
               CupertinoPageRoute(
-                builder: (context) => ClubInfoPage(club),
+                builder: (context) => ClubInfoScreen(club),
               ),
             );
           },

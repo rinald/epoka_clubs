@@ -14,6 +14,8 @@ class GoogleAvatar extends StatelessWidget {
       height: (radius * 2),
       child: ClipOval(
         child: FadeInImage.memoryNetwork(
+          fadeInDuration: const Duration(milliseconds: 50),
+          fadeOutDuration: const Duration(milliseconds: 50),
           placeholder: Uint8List(((radius * 2).round() * (radius * 2).round())),
           image: url,
         ),

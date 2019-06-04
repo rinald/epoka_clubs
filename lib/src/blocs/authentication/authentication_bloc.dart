@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:epokaclubs/src/utils/utils.dart';
 import 'package:flutter/services.dart';
 
 import './bloc.dart';
+
 import '../../models/epoka_user.dart';
 import '../../utils/user_repository.dart';
 
@@ -12,14 +14,16 @@ class AuthenticationBloc
   final _repository = UserRepository();
 
   @override
-  AuthenticationState get initialState => AuthenticationState.initial();
+  AuthenticationState get initialState => AuthenticationInitial();
+
+  // Future<FirebaseUser> get user => _repository.user;
 
   void onSignIn() {
-    this.dispatch(SignInEvent());
+    dispatch(SignInEvent());
   }
 
   void onSignOut() {
-    this.dispatch(SignOutEvent());
+    dispatch(SignOutEvent());
   }
 
   @override
@@ -33,20 +37,19 @@ class AuthenticationBloc
         _user = await _repository.signIn();
 
         if (_user != null) {
-          yield AuthenticationState.success(_user);
+          yield SignedIn(_user);
         } else {
-          yield AuthenticationState.failure();
+          yield SignedOff();
         }
-      } catch (exception) {
-        if (exception is PlatformException) {
-          if (exception.code == 'ERROR_NETWORK_REQUEST_FAILED') {
-            yield AuthenticationState.offline();
-          }
+      } on PlatformException catch (exception) {
+        if (exception.code == 'ERROR_NETWORK_REQUEST_FAILED') {
+          yield Offline();
         }
+        print(exception.code);
       }
     } else if (event is SignOutEvent) {
       _repository.signOut();
-      yield AuthenticationState.initial();
+      yield AuthenticationInitial();
     }
   }
 }

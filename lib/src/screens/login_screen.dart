@@ -1,26 +1,33 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/app/bloc.dart';
 import '../blocs/authentication/bloc.dart';
 import '../utils/utils.dart';
 
-void _onStateChange(BuildContext context, AuthenticationState state) {
-  if (state.signedIn) {
-    Navigator.pushReplacementNamed(context, '/home');
-  } else if (!state.emailValid) {
-    showInvalidAccountAlert(context);
-  } else if (!state.online) {
-    showNetworkError(context);
+void _onAuthStateChange(BuildContext context, AuthenticationState state) {
+  switch (state.runtimeType) {
+    case SignedIn:
+      Navigator.pushReplacementNamed(context, '/home');
+      break;
+    case SignedOff:
+      showInvalidAccountAlert(context);
+      break;
+    case Offline:
+      showNetworkError(context);
+      break;
   }
 }
 
-class _LoginPage extends StatelessWidget {
+class _LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _bloc = BlocProvider.of<AuthenticationBloc>(context);
+    final _appBloc = BlocProvider.of<AppBloc>(context);
+    final _appState = _appBloc.currentState as AppLoaded;
+    final _authBloc = BlocProvider.of<AuthenticationBloc>(context);
 
     return BlocListener(
-      bloc: _bloc,
-      listener: _onStateChange,
+      bloc: _authBloc,
+      listener: _onAuthStateChange,
       child: Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -47,7 +54,10 @@ class _LoginPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                onPressed: _bloc.onSignIn,
+                onPressed: () {
+                  _appState.preferences.setBool('signedIn', true);
+                  _authBloc.onSignIn();
+                },
               ),
               SizedBox(
                 height: 75.0,
@@ -60,14 +70,14 @@ class _LoginPage extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Epoka Clubs'),
       ),
-      body: _LoginPage(),
+      body: _LoginScreen(),
     );
   }
 }
