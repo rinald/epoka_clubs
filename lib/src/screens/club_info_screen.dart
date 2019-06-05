@@ -8,7 +8,8 @@ class ClubInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _events = events.where((event) => event.club == club.name).toList();
+    final _events =
+        events.where((event) => event.clubName == club.name).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -19,7 +20,7 @@ class ClubInfoScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(_events[index].title),
-            subtitle: Text(_events[index].club),
+            subtitle: Text(_events[index].clubName),
           );
         },
       ),

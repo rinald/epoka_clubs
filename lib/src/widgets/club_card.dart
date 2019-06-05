@@ -1,13 +1,13 @@
-import 'package:epokaclubs/src/blocs/subscription/subscription_bloc.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../blocs/subscription/subscription_bloc.dart';
 import '../models/club.dart';
 import '../utils/utils.dart';
 import '../screens/club_info_screen.dart';
 
 class FollowButton extends StatefulWidget {
-  FollowButton(this.club);
-  final Club club;
+  FollowButton(this.clubName);
+  final String clubName;
 
   @override
   _FollowButtonState createState() => _FollowButtonState();
@@ -17,19 +17,27 @@ class _FollowButtonState extends State<FollowButton>
     with AutomaticKeepAliveClientMixin<FollowButton> {
   Color _color;
   String _text = 'Subscribe';
+  SubscriptionBloc _subsBloc;
 
   @override
   bool get wantKeepAlive => true;
 
   @override
   void didChangeDependencies() {
-    _color = Theme.of(context).accentColor;
     super.didChangeDependencies();
+    _subsBloc = BlocProvider.of<SubscriptionBloc>(context);
+    final _subs = _subsBloc.preferences.getStringList('subscriptions');
+
+    if (_subs.contains(widget.clubName)) {
+      _color = Theme.of(context).primaryColor;
+      _text = 'Subscribed';
+    } else {
+      _color = Theme.of(context).accentColor;
+      _text = 'Subscribe';
+    }
   }
 
   void _toggleFollow() {
-    final _bloc = BlocProvider.of<SubscriptionBloc>(context);
-
     setState(() {
       _color = (_color == Theme.of(context).accentColor)
           ? Theme.of(context).primaryColor
@@ -39,9 +47,9 @@ class _FollowButtonState extends State<FollowButton>
     });
 
     if (_text == 'Subscribed') {
-      _bloc.onSubscribe(widget.club);
+      _subsBloc.onSubscribe(widget.clubName);
     } else {
-      _bloc.onUnsubscribe(widget.club);
+      _subsBloc.onUnsubscribe(widget.clubName);
     }
   }
 
@@ -109,7 +117,7 @@ class ClubCard extends StatelessWidget {
                     margin: EdgeInsets.all(5.0).copyWith(
                       right: 10.0,
                     ),
-                    child: FollowButton(club),
+                    child: FollowButton(club.name),
                   ),
                 ],
               ),

@@ -1,6 +1,6 @@
 class Event {
-  const Event(this.title, this.club, {this.admin});
+  const Event(this.title, this.clubName, {this.admin});
   final String title;
-  final String club;
+  final String clubName;
   final String admin;
 }

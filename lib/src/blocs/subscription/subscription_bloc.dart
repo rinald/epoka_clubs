@@ -1,32 +1,40 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import './bloc.dart';
 
-import '../../models/club.dart';
-
 class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
-  @override
-  SubscriptionState get initialState => SubscriptionState(<Club>[]);
+  SharedPreferences preferences;
 
-  void onSubscribe(Club club) {
-    dispatch(SubscribeEvent(club));
+  SubscriptionBloc(this.preferences);
+
+  @override
+  SubscriptionState get initialState =>
+      SubscriptionState(preferences.getStringList('subscriptions'));
+
+  void onSubscribe(String clubName) {
+    dispatch(SubscribeEvent(clubName));
   }
 
-  void onUnsubscribe(Club club) {
-    dispatch(UnsubscribeEvent(club));
+  void onUnsubscribe(String clubName) {
+    dispatch(UnsubscribeEvent(clubName));
   }
 
   @override
   Stream<SubscriptionState> mapEventToState(
     SubscriptionEvent event,
   ) async* {
-    final _subscriptions = List<Club>.from(currentState.subscriptions);
+    final _subscriptions = List<String>.from(currentState.subscriptions);
 
     if (event is SubscribeEvent) {
-      _subscriptions.add(event.club);
+      _subscriptions.add(event.clubName);
     } else if (event is UnsubscribeEvent) {
-      _subscriptions.remove(event.club);
+      _subscriptions.remove(event.clubName);
     }
+
+    preferences.setStringList('subscriptions', _subscriptions);
 
     yield SubscriptionState(_subscriptions);
   }

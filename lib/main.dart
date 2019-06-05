@@ -25,13 +25,11 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   AppBloc _appBloc;
   AuthenticationBloc _authBloc;
-  SubscriptionBloc _subsBloc;
 
   void initState() {
     super.initState();
     _appBloc = AppBloc();
     _authBloc = AuthenticationBloc();
-    _subsBloc = SubscriptionBloc();
   }
 
   void _onAppStateChange(BuildContext context, AppState state) {
@@ -39,6 +37,9 @@ class _AppState extends State<App> {
       _appBloc.onLoadPreferences();
     } else if (state is AppLoaded) {
       if (state.preferences.getBool('signedIn') ?? false) {
+        if (state.preferences.getStringList('subscriptions') == null) {
+          state.preferences.setStringList('subscriptions', <String>[]);
+        }
         _authBloc.onSignIn();
         Navigator.pushReplacementNamed(context, '/home');
       } else {
@@ -53,7 +54,6 @@ class _AppState extends State<App> {
       blocProviders: [
         BlocProvider<AppBloc>(bloc: _appBloc),
         BlocProvider<AuthenticationBloc>(bloc: _authBloc),
-        BlocProvider<SubscriptionBloc>(bloc: _subsBloc),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -83,7 +83,6 @@ class _AppState extends State<App> {
     super.dispose();
     _appBloc.dispose();
     _authBloc.dispose();
-    _subsBloc.dispose();
   }
 }
 

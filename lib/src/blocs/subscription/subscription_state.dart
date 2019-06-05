@@ -1,8 +1,7 @@
-import '../../models/club.dart';
-
 class SubscriptionState {
+  final List<String> subscriptions;
+
   SubscriptionState(this.subscriptions);
-  final List<Club> subscriptions;
 
   @override
   String toString() {

@@ -1,16 +1,15 @@
 import '../../blocs/subscription/bloc.dart';
 import '../../data/events.dart';
-import '../../models/club.dart';
 import '../../models/event.dart';
 import '../../utils/utils.dart';
 
 class EventsView extends StatelessWidget {
-  List<Event> subscribedEvents(List<Club> subscriptions) {
+  List<Event> subscribedEvents(List<String> subscriptions) {
     final _events = <Event>[];
 
     for (int i = 0; i < subscriptions.length; ++i) {
       for (int j = 0; j < events.length; ++j) {
-        if (events[j].club == subscriptions[i].name) {
+        if (events[j].clubName == subscriptions[i]) {
           _events.add(events[j]);
         }
       }
@@ -43,7 +42,7 @@ class EventsView extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(_events[index].title),
-                subtitle: Text(_events[index].club),
+                subtitle: Text(_events[index].clubName),
               );
             },
           );
