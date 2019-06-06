@@ -24,7 +24,7 @@ class EventsView extends StatelessWidget {
 
     return BlocBuilder(
       bloc: _bloc,
-      builder: (context, state) {
+      builder: (context, SubscriptionState state) {
         final _events = subscribedEvents(state.subscriptions);
 
         if (_events.isEmpty) {

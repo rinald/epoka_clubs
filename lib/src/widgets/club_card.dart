@@ -22,7 +22,7 @@ class _FollowButtonState extends State<FollowButton> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _subsBloc = BlocProvider.of<SubscriptionBloc>(context);
-    final _subs = _subsBloc.preferences.getStringList('subscriptions');
+    final _subs = _subsBloc.currentState.subscriptions;
 
     if (_subs.contains(widget.clubName)) {
       _color = Theme.of(context).primaryColor;

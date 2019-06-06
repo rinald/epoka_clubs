@@ -11,8 +11,8 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
   SubscriptionBloc(this.preferences);
 
   @override
-  SubscriptionState get initialState =>
-      SubscriptionState(preferences.getStringList('subscriptions'));
+  SubscriptionState get initialState => SubscriptionState(
+      preferences.getStringList('subscriptions') ?? <String>[]);
 
   void onSubscribe(String clubName) {
     dispatch(SubscribeEvent(clubName));
