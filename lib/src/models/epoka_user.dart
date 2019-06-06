@@ -1,12 +1,9 @@
 import 'package:epokaclubs/src/utils/utils.dart';
 
-enum EpokaUserType { Staff, Student }
-
 class EpokaUser {
-  EpokaUser({this.account});
-
   final FirebaseUser account;
-  // final EpokaUserType userType;
+
+  EpokaUser({this.account});
 
   @override
   String toString() {

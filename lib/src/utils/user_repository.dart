@@ -12,8 +12,6 @@ class UserRepository {
     ],
   );
 
-  // Future<FirebaseUser> get user => _firebaseAuth.currentUser();
-
   Future<EpokaUser> signIn() async {
     EpokaUser user;
     FirebaseUser _firebaseUser;

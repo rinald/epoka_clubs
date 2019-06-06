@@ -16,8 +16,6 @@ class AuthenticationBloc
   @override
   AuthenticationState get initialState => AuthenticationInitial();
 
-  // Future<FirebaseUser> get user => _repository.user;
-
   void onSignIn() {
     dispatch(SignInEvent());
   }

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 import '../blocs/subscription/subscription_bloc.dart';
 import '../models/club.dart';
-import '../utils/utils.dart';
 import '../screens/club_info_screen.dart';
+import '../utils/utils.dart';
 
 class FollowButton extends StatefulWidget {
   FollowButton(this.clubName);
@@ -13,14 +13,10 @@ class FollowButton extends StatefulWidget {
   _FollowButtonState createState() => _FollowButtonState();
 }
 
-class _FollowButtonState extends State<FollowButton>
-    with AutomaticKeepAliveClientMixin<FollowButton> {
+class _FollowButtonState extends State<FollowButton> {
   Color _color;
   String _text = 'Subscribe';
   SubscriptionBloc _subsBloc;
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void didChangeDependencies() {
@@ -55,7 +51,6 @@ class _FollowButtonState extends State<FollowButton>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return FlatButton(
       color: _color,
       textColor: Colors.white,
@@ -75,14 +70,10 @@ class ClubCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final _bloc = BlocProvider.of<SubscriptionBloc>(context);
-
     return Container(
       margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
       child: Card(
         child: InkWell(
-          // highlightColor: Color(0x0F00AFF0),
-          // splashColor: Color(0x0F0C5BA6),
           customBorder: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15.0))),
           onTap: () {
@@ -108,7 +99,12 @@ class ClubCard extends StatelessWidget {
                   horizontal: 15.0,
                   vertical: 5.0,
                 ),
-                child: Text(club.description),
+                child: Text(
+                  'Club description...',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

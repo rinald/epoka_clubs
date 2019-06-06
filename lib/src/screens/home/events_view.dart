@@ -37,7 +37,6 @@ class EventsView extends StatelessWidget {
           );
         } else {
           return ListView.builder(
-            // physics: BouncingScrollPhysics(),
             itemCount: _events.length,
             itemBuilder: (context, index) {
               return ListTile(
