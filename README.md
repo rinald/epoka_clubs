@@ -1,3 +1,3 @@
-# Epoka Clubs
+# Epoka Student
 
-An app for Epoka University's Clubs
+An app for Epoka University's Students
