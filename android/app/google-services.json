@@ -1,46 +1,42 @@
 {
   "project_info": {
-    "project_number": "551395885861",
-    "firebase_url": "https://epokaclubs.firebaseio.com",
-    "project_id": "epokaclubs",
-    "storage_bucket": "epokaclubs.appspot.com"
+    "project_number": "205432034318",
+    "firebase_url": "https://epoka-student.firebaseio.com",
+    "project_id": "epoka-student",
+    "storage_bucket": "epoka-student.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:551395885861:android:a8d34154b262c96b",
+        "mobilesdk_app_id": "1:205432034318:android:327aaf3569bbeaf63e985f",
         "android_client_info": {
           "package_name": "al.edu.epoka.clubs.epokaclubs"
         }
       },
       "oauth_client": [
         {
-          "client_id": "551395885861-icj84e3tvf2o32f9pld9v1j9u8q4hn0g.apps.googleusercontent.com",
+          "client_id": "205432034318-j3siqdcu84p8u20f2i2ekhpmdfnmu1ej.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "al.edu.epoka.clubs.epokaclubs",
-            "certificate_hash": "546280d8a01c292a50bdfa9268b9e30b01594bf0"
+            "certificate_hash": "bf8f20f18bbdb5d4bafecc7a25e463485e655870"
           }
         },
         {
-          "client_id": "551395885861-eqn8bvlne92e6c2o9qq7ebhga92kjsf7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "al.edu.epoka.clubs.epokaclubs",
-            "certificate_hash": "15e40473d5aba4e60183556a956bc031eff9e707"
-          }
+          "client_id": "205432034318-uqhhpv42pqp9c6cj60aop42q6vvqca5j.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCtLVKYQkNWdxFQMfQApnRA_MONh2Oca9U"
+          "current_key": "AIzaSyBjwwlsv99ROVkMwFXEwoegFZ1z05Up558"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "551395885861-4cshr44ks7v54coo36b401goma4e0s9l.apps.googleusercontent.com",
+              "client_id": "205432034318-uqhhpv42pqp9c6cj60aop42q6vvqca5j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
