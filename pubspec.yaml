@@ -1,5 +1,5 @@
 name: epokaclubs
-description: An app for Epoka University's Students
+description: An app for Epoka University's Student Clubs
 
 version: 0.2.0+1
 
@@ -10,8 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # cloud_firestore: ^0.11.0
-  equatable: ^0.2.5
   firebase_auth: ^0.11.0
   flutter_bloc: ^0.12.0
   font_awesome_flutter: ^8.4.0
